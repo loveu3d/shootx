@@ -35,7 +35,7 @@ public class Rocket : MonoBehaviour {
 
 			//	now_bullet=
 				GameObject obj = GameObject.Find("firePoint");
-
+				 
 				Instantiate(m_bullet,obj.transform.position,obj.transform.rotation);
 
 

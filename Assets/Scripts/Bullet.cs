@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour {
+	public GameObject effect;
 	public float m_speed ;
 	// Use this for initialization
 	 float destory_time;
@@ -17,12 +18,23 @@ public class Bullet : MonoBehaviour {
 //		this.transform.Translate(new Vector3(-move,0,0));
 
 		destory_time +=Time.deltaTime;
-		if(destory_time>1.0f)
+		if(destory_time>0.5f)
 		{
 //			DestroyImmediate(this);
-		//Destroy(this);
+			GameObject.Destroy(this.gameObject);
 		}
+
 	}
 
 
+	void OnTriggerEnter(Collider other)
+	{
+//		Debug.Log("(Collider other)");
+
+		if(other.tag.CompareTo("stone") == 0)
+		{
+			Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
+			GameObject.Destroy(this.gameObject);
+		}
+	}
 }
