@@ -33,8 +33,13 @@ public class Bullet : MonoBehaviour {
 
 		if(other.tag.CompareTo("stone") == 0)
 		{
-			Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
+		//	Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
+			//GameObject effect = Resources.Load("prefabName") as GameObject;
+
+
 			GameObject.Destroy(this.gameObject);
 		}
 	}
+
 }
+

@@ -3,23 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Effect : MonoBehaviour {
-
 		public Sprite[] Sprites;  
-		public float speed;  
+		 float speed = 0.05f;  
 		private SpriteRenderer spriterenderer;  
+		int index;
+		float interval;
+		
+		void Start () {
+		spriterenderer = GetComponent<SpriteRenderer>(); 
+		index=0;
+		spriterenderer.sprite = Sprites[index];
+		interval=0;
+		}
 
-		void Start () {  
-			spriterenderer = GetComponent<SpriteRenderer>();  
+		void Update () {
 
-		}  
+			interval += Time.deltaTime;
+			if(interval>speed)
+			{
+				index++;
+				interval=0;
+			}
+			spriterenderer.sprite = Sprites[index]; 
 
-		void Update () {  
-			int index = (int)(Time.time * speed) % Sprites.Length;  
-			spriterenderer.sprite = Sprites[index];  
+		if(index==Sprites.Length-1)
+		{
+			//Debug.Log(index);
+			GameObject.Destroy(this.transform.parent.gameObject);
+		}
 
-			if(index==Sprites.Length-1)
-			GameObject.Destroy(this.gameObject);
-		}  
+	} 
+		
+//		void LateUpdate()
+//		{
+//
+//
+//		}
 
 
 }
