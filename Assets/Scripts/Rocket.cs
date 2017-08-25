@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//使用UI->Text 必须要增加头文件 UnityEngine.UI;
+using UnityEngine.UI;
+
 
 public class Rocket : MonoBehaviour {
 	public Transform m_bullet;
@@ -38,6 +41,11 @@ public class Rocket : MonoBehaviour {
 				 
 				Instantiate(m_bullet,obj.transform.position,obj.transform.rotation);
 
+				GameObject ui_lifetimes = GameObject.Find("ui_lifetimes");
+				Text text =	ui_lifetimes.GetComponent<Text>();
+				int number = int.Parse(text.text);//	Convert.ToString(text.text);
+				number+=1;
+				text.text=""+number;
 
 			//	now_bullet.transform.Translate(new Vector3(0,0,0));
 		}
