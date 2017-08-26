@@ -34,7 +34,7 @@ public class Monster : MonoBehaviour {
 	// Update is called once per frame  
 	void Update () {
 		radian += perRadian; // 弧度每次加0.03  
-		float dy = Mathf.Cos(radian) * radius; // dy定义的是针对y轴的变量，也可以使用sin，找到一个适合的值就可以  
+		float dy = Mathf.Cos(radian*10) * radius; // dy定义的是针对y轴的变量，也可以使用sin，找到一个适合的值就可以  
 		this.transform.position = this.transform. position  + new Vector3 (dy, 0, 0); 
 	}
 
