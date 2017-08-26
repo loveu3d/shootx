@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stone : MonoBehaviour {
+public class StoneSprite : MonoBehaviour {
 	public GameObject effect;
 
 
@@ -11,11 +11,11 @@ public class Stone : MonoBehaviour {
 
 	 int life=1;
 
-	int random_pos;
+//	int random_pos;
 	
 	// Use this for initialization
 	void Start () {
-		random_pos=Random.Range(1,100);
+	//	random_pos=Random.Range(1,100);
 		spriterenderer = GetComponent<SpriteRenderer>();  
 		refreshSprite(life);
 

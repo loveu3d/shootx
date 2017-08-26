@@ -2,33 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StonesManager : MonoBehaviour {
+public class UIManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
-	}
 
-	void initWithGame1(int level_id)
+	}
+	public void enterGame1()
 	{
 
 	}
-	void clearGame1()
-	{
-
-	}
-
-	void initWithGame2(int level_id)
-	{
-
-	}
-	void clearGame2()
+	public void enterGame2()
 	{
 
 	}
 }
+
