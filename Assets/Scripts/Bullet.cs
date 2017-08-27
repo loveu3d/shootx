@@ -13,12 +13,15 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+	}
+	void FixedUpdate () {
 //		transform.Translate(new Vector3(0,0,0));
 		this.transform.Translate(new Vector3(0, m_speed,0));
 //		this.transform.Translate(new Vector3(-move,0,0));
 
 		destory_time +=Time.deltaTime;
-		if(destory_time>0.5f)
+		if(destory_time>1.0f)
 		{
 //			DestroyImmediate(this);
 			GameObject.Destroy(this.gameObject);

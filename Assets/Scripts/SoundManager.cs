@@ -14,7 +14,7 @@ public class SoundManager : MonoBehaviour {
 
 	}
 
-	public static void PlayBg1()
+	public void PlayBg1()
 	{
 	
 	}

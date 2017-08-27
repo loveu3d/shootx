@@ -23,8 +23,13 @@ public class Rocket : MonoBehaviour {
 		m_bulletTime=0f;
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	// Update is called once per frame\
+	void Update()
+	{
+
+	}
+
+	void FixedUpdate () {
 
 		m_bulletTime -=Time.deltaTime;
 
@@ -41,12 +46,7 @@ public class Rocket : MonoBehaviour {
 				 
 				Instantiate(m_bullet,obj.transform.position,obj.transform.rotation);
 
-				GameObject ui_lifetimes = GameObject.Find("ui_lifetimes");
-				Text text =	ui_lifetimes.GetComponent<Text>();
-				int number = int.Parse(text.text);//	Convert.ToString(text.text);
-				number+=1;
-				text.text=""+number;
-
+				GameManager.gameManager.reduceLifetime();
 			//	now_bullet.transform.Translate(new Vector3(0,0,0));
 		}
 
