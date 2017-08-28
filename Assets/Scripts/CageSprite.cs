@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cage : MonoBehaviour {
+public class CageSprite : MonoBehaviour {
 	public GameObject effect;
 	// Use this for initialization
 	GameObject temp;
@@ -15,13 +15,21 @@ public class Cage : MonoBehaviour {
 		if(other.tag.CompareTo("bullet") == 0)
 		{
 			{
+				//特效放大播放
 				temp = Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
 				temp.transform.localScale = temp.transform.localScale *2;//new Vector3();
-
+//				//操作怪物
 				GameObject cageMonster = this.transform.parent.gameObject;
 				GameObject monsterObject = cageMonster.transform.FindChild("Monster").gameObject;
 				MonsterSprite ms = monsterObject.GetComponent<MonsterSprite>();
 				ms.StartMove();
+//				//显示对话框
+				GameObject talkObject = cageMonster.transform.FindChild("Talk").gameObject;
+				TalkSprite talk = talkObject.GetComponent<TalkSprite>();
+				talk.showTalk();
+
+				//销毁笼子
+				GameObject.Destroy(this.gameObject);
 				//				this.gameObject.transform.position = 	this.gameObject.transform.position +new Vector3(0,0,3);
 				//				StartCoroutine(WaitAndDestory(1.0F)); 
 			}

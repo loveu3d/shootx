@@ -34,7 +34,11 @@ public class GameManager : MonoBehaviour {
 
 	public void resetLevel()
 	{
-//		levelManager.
+
+	}
+	public void nextLevel()
+	{
+		resetLevel();
 	}
 	public void setLifetime(int lifetime)
 	{
