@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 	UIManager uiManager;
 	SoundManager soundManager;
 	ScoresManager scoreManager;
+	LevelManager levelManager;
 
 	GameObject ui_gameover ; 
 	GameObject ui_retry ; 
@@ -31,6 +32,10 @@ public class GameManager : MonoBehaviour {
 		EnterGame();
 	}
 
+	public void resetLevel()
+	{
+//		levelManager.
+	}
 	public void setLifetime(int lifetime)
 	{
 		scoreManager.setLifetime(lifetime);
@@ -121,6 +126,8 @@ public class GameManager : MonoBehaviour {
 	public void RetryGame()
 	{
 		setGameOverVisible(false);
+
+		resetLevel();
 
 		changeSprites();
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//对单独sprite的控制
 public class SpritesManager : MonoBehaviour {
 
 	// Use this for initialization
@@ -16,39 +17,13 @@ public class SpritesManager : MonoBehaviour {
 	public void enterGame1()
 	{
 		changeBG();
-		clearGame2();
-		initWithGame1(0);
 	}
 
 	public void enterGame2()
 	{
 		changeBG();
-		clearGame1();
-		initWithGame2(0);
 	}
-
-	public void initWithGame1(int level_id)
-	{
-
-	}
-
-	public void clearGame1()
-	{
-
-	}
-
-
-
-	public void initWithGame2(int level_id)
-	{
-
-	}
-
-	public void clearGame2()
-	{
-
-	}
-
+		
 	void changeMonster()
 	{
 
