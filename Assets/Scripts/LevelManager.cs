@@ -62,7 +62,8 @@ public class LevelManager : MonoBehaviour {
 	public void create_monster(int indexX,int indexY,float spaceX,float spaceY,float scale_value,int id)
 	{
 		GameObject monster =	Resources.Load<GameObject>("Prefabs/CageMonster");
-		monster= Instantiate(monster,stone_point.transform.position,stone_point.transform.rotation);
+		monster = Instantiate(monster,stone_point.transform.position,stone_point.transform.rotation);
+		monster.name = "CageMonster";
 		//obj.transform.localScale = stone_point.transform.localScale + new Vector3(scale_value,scale_value,1);
 		monster.transform.position= stone_point.transform.position +new Vector3(indexX*spaceX,-indexY*spaceY,0);
 
@@ -81,13 +82,13 @@ public class LevelManager : MonoBehaviour {
 		clear_sprites();
 //		GameObject obj= new GameObject("stones");
 		{
-		int left_right =10;
+		int left_right =9;
 		int up_down =1;
 		float spaceX= 1.2f;
 		float spaceY= 1f;
 		float scale_value =0.2f;
 
-		create_stones(left_right,up_down+level_id,spaceX,spaceY,scale_value,1);
+		create_stones(left_right,up_down+level_id,spaceX,spaceY,scale_value,2);
 		create_monster(left_right/2, -1 ,spaceX,spaceY,scale_value,1);
 
 		}
