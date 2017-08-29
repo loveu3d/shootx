@@ -27,6 +27,8 @@ public class MonsterSprite : MonoBehaviour {
 	{
 		is_move=true;
 
+		GameManager.gameManager.reset_level_data();
+
 		//	Debug.Log("StartMove");
 	}
 

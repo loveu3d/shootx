@@ -8,17 +8,25 @@ public class GameManager : MonoBehaviour {
 	public static int game_id;
 
 	SpritesManager spritesManager;
-	UIManager uiManager;
-	SoundManager soundManager;
-	ScoresManager scoreManager;
-	LevelManager levelManager;
+	public UIManager uiManager;
+	public SoundManager soundManager;
+	public ScoresManager scoreManager;
+	public LevelManager levelManager;
 
 	GameObject ui_gameover ; 
 	GameObject ui_retry ; 
+	public bool will_game_over;
+	public float will_game_time=1.0f;
+	public float will_game_ticket;
 
 	void Start () {
 		gameManager=this;
+
 		game_id=1;
+		will_game_time=1.0f;
+
+
+
 		ui_gameover=null;
 		ui_retry=null;
 		spritesManager = this.gameObject.GetComponent<SpritesManager>();
@@ -33,12 +41,20 @@ public class GameManager : MonoBehaviour {
 		EnterGame();
 	}
 
+	public void reset_level_data()
+	{
+		will_game_over=false;
+		will_game_ticket=0;
+	}
+
 	public void resetLevel()
 	{
 		levelManager.resetLevel();
 	}
 	public void nextLevel()
 	{
+		reset_level_data();
+
 //		CageMonster
 //		reset_position
 		GameManager.gameManager.setLifetime(	GameManager.gameManager.getLifetime()+5);
@@ -53,12 +69,14 @@ public class GameManager : MonoBehaviour {
 	{
 		scoreManager.setLifetime(lifetime);
 	}
+
+
 	public void reduceLifetime()
 	{
 		scoreManager.reduceLifetime();
 		if(scoreManager.getLifetime()<=0)
 		{
-			enterGameOver();
+			will_game_over=true;
 		}
 	}
 
@@ -97,7 +115,17 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	void Update () {	}
+	void Update () {	
+	
+		if(will_game_over==true)
+		{
+			will_game_ticket +=Time.deltaTime;
+			if(will_game_time<will_game_ticket)
+			{
+			enterGameOver();
+			}
+		}
+	}
 
 	void change_game_id()
 	{
@@ -137,6 +165,10 @@ public class GameManager : MonoBehaviour {
 
 	public void RetryGame()
 	{
+		reset_level_data();
+
+		levelManager.set_level_id(1);
+		
 		setLifetime(5);
 
 		setGameOverVisible(false);

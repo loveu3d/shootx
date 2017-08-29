@@ -35,10 +35,13 @@ public class Rocket : MonoBehaviour {
 
 		if(m_bulletTime<0)
 		{
-		if(Input.GetKey(KeyCode.Space)||Input.GetMouseButton(0))	
-		{
-				m_bulletTime=1.0f;
-
+			//命数量>0 才能开炮
+			if((GameManager.gameManager.scoreManager.getLifetime())>0)
+			{
+		   if(Input.GetKey(KeyCode.Space)||Input.GetMouseButton(0))	
+		   {
+				m_bulletTime=0.5f;
+					
 //			Debug.Log("First Step");
 
 			//	now_bullet=
@@ -49,7 +52,7 @@ public class Rocket : MonoBehaviour {
 				GameManager.gameManager.reduceLifetime();
 			//	now_bullet.transform.Translate(new Vector3(0,0,0));
 		}
-
+			}
 		}
 
 

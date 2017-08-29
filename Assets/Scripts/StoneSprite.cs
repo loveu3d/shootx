@@ -35,6 +35,9 @@ public class StoneSprite : MonoBehaviour {
 
 		int index = life-1;
 
+		if(spriterenderer==null)
+			spriterenderer = GetComponent<SpriteRenderer>();  
+		
 		spriterenderer.sprite = sprites[index];  
 
 	}

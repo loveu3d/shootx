@@ -14,6 +14,7 @@ public class ScoresManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
 	public void reduceLifetime()
 	{
 		GameObject ui_lifetimes = GameObject.Find("ui_lifetimes");
@@ -33,6 +34,7 @@ public class ScoresManager : MonoBehaviour {
 		text.text=""+setLifetime;
 
 	}
+
 	public int getLifetime()
 	{
 		GameObject ui_lifetimes = GameObject.Find("ui_lifetimes");
