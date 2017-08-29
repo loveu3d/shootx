@@ -22,6 +22,13 @@ public class MonsterSprite : MonoBehaviour {
 ////		transform.parent.transform.position
 //		this.transform.parent.transform.position = old_transform;
 //	}
+	public void set_monster_id(int monster_id)
+	{
+		 SpriteRenderer spriterenderer;
+	     spriterenderer = this.gameObject.GetComponent<SpriteRenderer>();
+		Sprite _sprite = Resources.Load<Sprite>("monster"+monster_id);
+		spriterenderer.sprite = _sprite;
+	}
 
 	public void StartMove()
 	{
