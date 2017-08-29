@@ -24,6 +24,7 @@ public class ScoresManager : MonoBehaviour {
 		number-=1;
 		text.text=""+number;
 	}
+
 	public void setLifetime(int setLifetime)
 	{
 		GameObject ui_lifetimes = GameObject.Find("ui_lifetimes");

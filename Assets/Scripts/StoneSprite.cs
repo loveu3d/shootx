@@ -9,7 +9,12 @@ public class StoneSprite : MonoBehaviour {
 	public Sprite[] sprites;
 	private SpriteRenderer spriterenderer;  
 
-	 int life=1;
+	 public int life=1;
+	public void set_life(int _life)
+	{
+		life=_life;
+		refreshSprite(life);
+	}
 
 //	int random_pos;
 	

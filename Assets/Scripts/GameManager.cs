@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
 		uiManager = this.gameObject.GetComponent<UIManager>();
 		soundManager = this.gameObject.GetComponent<SoundManager>();
 		scoreManager = this.gameObject.GetComponent<ScoresManager>();
+		levelManager = this.gameObject.GetComponent<LevelManager>();
 
 
 		soundManager.PlayBg1();
@@ -34,12 +35,20 @@ public class GameManager : MonoBehaviour {
 
 	public void resetLevel()
 	{
-
+		levelManager.resetLevel();
 	}
 	public void nextLevel()
 	{
-		resetLevel();
+//		CageMonster
+//		reset_position
+		GameManager.gameManager.setLifetime(	GameManager.gameManager.getLifetime()+5);
+		levelManager.nextLevel();
 	}
+	public int getLifetime()
+	{
+		return scoreManager.getLifetime();
+	}
+
 	public void setLifetime(int lifetime)
 	{
 		scoreManager.setLifetime(lifetime);
@@ -101,7 +110,6 @@ public class GameManager : MonoBehaviour {
 	}
 	public void EnterGame()
 	{
-		setLifetime(5);
 		change_button_pic();
 		RetryGame();
 	}
@@ -129,6 +137,8 @@ public class GameManager : MonoBehaviour {
 
 	public void RetryGame()
 	{
+		setLifetime(5);
+
 		setGameOverVisible(false);
 
 		resetLevel();

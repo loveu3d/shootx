@@ -6,17 +6,22 @@ public class MonsterSprite : MonoBehaviour {
 	
 	bool is_move;
 	float move_time;
-	Transform old_transform;
+//	Vector3 old_transform;
 
 	void Start () {
+		//old_transform = this.transform.parent.transform.position;
 		is_move=false;
 		move_time=0;
-		old_transform = this.transform.parent.transform;
+		int a=0;
+		int b=0;
+		a=b;
+		b=a;
 	}
-	public void reset_transform()
-	{
-		this.transform.parent.transform.position = old_transform.position;
-	}
+//	public void reset_position()
+//	{
+////		transform.parent.transform.position
+//		this.transform.parent.transform.position = old_transform;
+//	}
 
 	public void StartMove()
 	{
@@ -42,14 +47,20 @@ public class MonsterSprite : MonoBehaviour {
 		if(is_move == true)
 		{
 			move_time+=Time.deltaTime;
-			if(move_time>2.0f)
+			if(move_time>1.0f)
 			{
 				transform.parent.transform.position= transform.parent.transform.position+new Vector3(0,0.1f,0);
 
 			}
-			if(move_time>3.0)
+			if(move_time>2.0)
 			{
 				GameManager.gameManager.nextLevel();
+
+				is_move=false;
+				move_time=0;
+//				reset_position();
+				Destroy( transform.parent.gameObject);
+
 			}
 
 		}
