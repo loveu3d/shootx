@@ -16,20 +16,45 @@ public class Rocket : MonoBehaviour {
 
 	GameObject endPoint;
 
+	LineRenderer lineRenderer;
+
 	// Use this for initialization
 	void Start () {
 		this.transform.localPosition =	GameObject.Find("StartPoint").transform.localPosition;	
 		endPoint = GameObject.Find("EndPoint");
 		m_bulletTime=0f;
+
+		lineRenderer= this.gameObject.GetComponent<LineRenderer>();
+		lineRenderer.SetVertexCount(5);  
+
 	}
 	
-	// Update is called once per frame\
+
+
 	void Update()
 	{
+		lineRenderer.SetPosition (0, this.transform.position+ new Vector3 (-1, 1, 0));  
+		lineRenderer.SetPosition (1,this.transform.position+  new Vector3 (1, 1, 0));  
+		lineRenderer.SetPosition (2,this.transform.position+  new Vector3 (1, -1, 0));  
+		lineRenderer.SetPosition (3,this.transform.position+  new Vector3 (-1, -1, 0));  
+		lineRenderer.SetPosition (4, this.transform.position+ new Vector3 (-1, 1, 0));  
 
+		// Update is called once per frame\
+		Ray ray = new Ray(transform.position, transform.up);  
+		RaycastHit hit;  
+		if(Physics.Raycast(ray, out hit, Mathf.Infinity))  
+		{
+			// 如果射线与平面碰撞，打印碰撞物体信息  
+			Debug.Log("碰撞对象: " + hit.collider.name);  
+			// 在场景视图中绘制射线  
+			Debug.DrawLine(ray.origin, hit.point, Color.red); 
+
+
+		}  
 	}
 
 	void FixedUpdate () {
+		//为了暂停写在这里：
 
 		m_bulletTime -=Time.deltaTime;
 

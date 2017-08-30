@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 	public GameObject effect;
-	public float m_speed ;
+    float m_speed =1.0f;
 	// Use this for initialization
 	 float destory_time;
 	void Start () {
