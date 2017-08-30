@@ -34,15 +34,15 @@ public class CageSprite : MonoBehaviour {
 		//				StartCoroutine(WaitAndDestory(1.0F)); 
 	}
 
-	void OnTriggerEnter(Collider other)
-	{
-		if(other.tag.CompareTo("bullet") == 0)
-		{
-			{
-				CD_monster();
-			}
-		}
-	}
+//	void OnTriggerEnter(Collider other)
+//	{
+//		if(other.tag.CompareTo("bullet") == 0)
+//		{
+//			{
+//				CD_monster();
+//			}
+//		}
+//	}
 
 	
 	float radian = 0; // 弧度  

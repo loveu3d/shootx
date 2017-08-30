@@ -75,13 +75,14 @@ public class LevelManager : MonoBehaviour {
 
 	}
 
-	public void create_monster(int indexX,int indexY,float spaceX,float spaceY,float scale_value,int id)
+	public void create_monster(int indexX,float indexY,float spaceX,float spaceY,float scale_value,int id)
 	{
 		GameObject monster =	Resources.Load<GameObject>("Prefabs/CageMonster");
 		monster = Instantiate(monster,stone_point.transform.position,stone_point.transform.rotation);
 		monster.name = "CageMonster";
 
-		//obj.transform.localScale = stone_point.transform.localScale + new Vector3(scale_value,scale_value,1);
+		monster.transform.localScale = monster.transform.localScale + new Vector3(scale_value,scale_value,1);
+
 		monster.transform.position= stone_point.transform.position +new Vector3(indexX*spaceX,-indexY*spaceY,0);
 		MonsterSprite ms = monster.transform.FindChild("Monster").GetComponent<MonsterSprite>();
 		ms.set_monster_id(id);
@@ -94,23 +95,32 @@ public class LevelManager : MonoBehaviour {
 
 		resetLevel();
 	}
+	public void set_rocket_distant(float dis)
+	{
+		GameObject obj = GameObject.Find("rocket");
+		Rocket _rocket = obj.GetComponent<Rocket>();
+		_rocket.set_rocket_distant(dis);
+	}
 
 	public void resetLevel()
 	{
 
 //		Debug.Log("debug_log");
-		clear_sprites();
-//		GameObject obj= new GameObject("stones");
+		clear_sprites();'
+
+		//1
 		{
+		float rocket_per_distatn=0.2f;
 		int left_right =9;
 		int up_down =0;
 		float spaceX= 1.2f;
 		float spaceY= 1f;
 		float scale_value =0.2f;
+		float level_add_life =9;
 
 		create_stones(left_right,up_down+level_id,spaceX,spaceY,scale_value,1);
-		create_monster(left_right/2, -1 ,spaceX,spaceY,scale_value,(level_id)%10);
-
+		create_monster(left_right/2, -1.2f ,spaceX,spaceY,scale_value,(level_id)%10);
+		set_rocket_distant(rocket_per_distatn);
 		}
 		return;
 

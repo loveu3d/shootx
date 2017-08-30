@@ -14,6 +14,11 @@ public class Rocket : MonoBehaviour {
 
 	public float move;
 
+	public void set_rocket_distant(float _move)
+	{
+		move = _move;
+	}
+
 	GameObject endPoint;
 
 	LineRenderer lineRenderer;
@@ -67,6 +72,13 @@ public class Rocket : MonoBehaviour {
 
 	}
 
+	public bool Is_Game_win()
+	{
+		GameObject obj = GameObject.Find("Monster");
+		MonsterSprite sprite = obj.GetComponent<MonsterSprite>();
+		return sprite.Is_game_win();
+	}
+
 	void FixedUpdate () 
 	{
 		//为了暂停写在这里：
@@ -95,13 +107,15 @@ public class Rocket : MonoBehaviour {
 				{
 					if(Input.GetKey(KeyCode.Space)||Input.GetMouseButton(0))	
 					{
+						if(Is_Game_win()==false)
+						{
 						m_bulletTime=0.5f;
 
 						//之前的碰撞检测
 //						GameObject obj = GameObject.Find("firePoint");
 //
 //						Instantiate(m_bullet,obj.transform.position,obj.transform.rotation);
-						Debug.Log("碰撞对象: " + hit.collider.name);  
+					//	Debug.Log("碰撞对象: " + hit.collider.name);  
 						if(hit.collider.name =="Cage")
 						{
 							GameObject cage =  hit.collider.gameObject;
@@ -112,6 +126,8 @@ public class Rocket : MonoBehaviour {
 						}
 
 						GameManager.gameManager.reduceLifetime();
+						}
+
 					}
 				}
 			}

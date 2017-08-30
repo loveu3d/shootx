@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class MonsterSprite : MonoBehaviour {
 	
-	bool is_move;
+	bool is_game_win;
 	float move_time;
 //	Vector3 old_transform;
 
 	void Start () {
 		//old_transform = this.transform.parent.transform.position;
-		is_move=false;
+		is_game_win=false;
 		move_time=0;
 		int a=0;
 		int b=0;
 		a=b;
 		b=a;
 	}
+	public  bool Is_game_win()
+	{
+		return is_game_win;
+	}
+
 //	public void reset_position()
 //	{
 ////		transform.parent.transform.position
@@ -32,7 +37,7 @@ public class MonsterSprite : MonoBehaviour {
 
 	public void StartMove()
 	{
-		is_move=true;
+		is_game_win=true;
 
 		GameManager.gameManager.reset_level_data();
 
@@ -46,14 +51,14 @@ public class MonsterSprite : MonoBehaviour {
 	// Update is called once per frame  
 	void Update () 
 	{
-		if(is_move==false)
+		if(is_game_win==false)
 		{
 		radian += perRadian; // 弧度每次加0.03  
 		float dy = Mathf.Cos(radian*10) * radius; // dy定义的是针对y轴的变量，也可以使用sin，找到一个适合的值就可以  
 		this.transform.position = this.transform. position  + new Vector3 (dy, 0, 0); 
 		}
 
-		if(is_move == true)
+		if(is_game_win == true)
 		{
 			move_time+=Time.deltaTime;
 			if(move_time>1.0f)
@@ -65,7 +70,7 @@ public class MonsterSprite : MonoBehaviour {
 			{
 				GameManager.gameManager.nextLevel();
 
-				is_move=false;
+				is_game_win=false;
 				move_time=0;
 //				reset_position();
 				Destroy( transform.parent.gameObject);

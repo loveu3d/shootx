@@ -76,6 +76,9 @@ public class GameManager : MonoBehaviour {
 		scoreManager.reduceLifetime();
 		if(scoreManager.getLifetime()<=0)
 		{
+			GameObject obj = GameObject.Find("Monster");
+			MonsterSprite sprite = obj.GetComponent<MonsterSprite>();
+			if(sprite.Is_game_win()) return; 
 			will_game_over=true;
 		}
 	}
@@ -169,7 +172,7 @@ public class GameManager : MonoBehaviour {
 
 		levelManager.set_level_id(1);
 		
-		setLifetime(5);
+		setLifetime(50);
 
 		setGameOverVisible(false);
 
