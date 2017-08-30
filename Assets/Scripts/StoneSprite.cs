@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StoneSprite : MonoBehaviour {
 	public GameObject effect;
-
+	public GameObject speed;
 
 	public Sprite[] sprites;
 	private SpriteRenderer spriterenderer;  
@@ -42,28 +42,34 @@ public class StoneSprite : MonoBehaviour {
 
 	}
 
+	public void CD_stone()
+	{
+		life--;
+
+		refreshSprite(life);
+
+		if(life==0)
+		{
+			Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
+			Instantiate(speed,gameObject.transform.position,gameObject.transform.rotation);
+
+
+			GameObject.Destroy(this.gameObject);
+
+			//				this.gameObject.transform.position = 	this.gameObject.transform.position +new Vector3(0,0,3);
+			//				StartCoroutine(WaitAndDestory(1.0F));  
+
+		}
+	}
+
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.tag.CompareTo("bullet") == 0)
 		{
-			life--;
-
-			refreshSprite(life);
-
-			if(life==0)
-			{
-				Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
-
-
-				GameObject.Destroy(this.gameObject);
-
-//				this.gameObject.transform.position = 	this.gameObject.transform.position +new Vector3(0,0,3);
-//				StartCoroutine(WaitAndDestory(1.0F));  
-
-			}
-
+			CD_stone();
 		}
 	}
+
 	//StartCoroutine(WaitAndPrint(2.0F));  
 
 //定义 WaitAndPrint（）方法  

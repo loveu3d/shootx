@@ -103,12 +103,12 @@ public class LevelManager : MonoBehaviour {
 //		GameObject obj= new GameObject("stones");
 		{
 		int left_right =9;
-		int up_down =1;
+		int up_down =0;
 		float spaceX= 1.2f;
 		float spaceY= 1f;
 		float scale_value =0.2f;
 
-		create_stones(left_right,up_down+level_id,spaceX,spaceY,scale_value,2);
+		create_stones(left_right,up_down+level_id,spaceX,spaceY,scale_value,1);
 		create_monster(left_right/2, -1 ,spaceX,spaceY,scale_value,(level_id)%10);
 
 		}

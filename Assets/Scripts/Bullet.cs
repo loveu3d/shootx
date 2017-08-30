@@ -13,8 +13,8 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 	}
+
 	void FixedUpdate () {
 //		transform.Translate(new Vector3(0,0,0));
 		this.transform.Translate(new Vector3(0, m_speed,0));

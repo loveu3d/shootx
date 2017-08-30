@@ -24,8 +24,25 @@ public class Rocket : MonoBehaviour {
 		endPoint = GameObject.Find("EndPoint");
 		m_bulletTime=0f;
 
-		lineRenderer= this.gameObject.GetComponent<LineRenderer>();
-		lineRenderer.SetVertexCount(5);  
+//		lineRenderer= this.gameObject.GetComponent<LineRenderer>();
+//		lineRenderer.SetVertexCount(2);  
+//		lineRenderer.SetWidth(0.05f,0.05f);
+//		Color drawColor=Color.cyan;
+//		switch(1)
+//		{
+//		case 1:
+//			drawColor = Color.cyan;//青色
+//			break;
+//		case 2:
+//			drawColor = Color.green; //绿色
+//			break;
+//		default:
+//			drawColor = Color.clear;//擦除
+//			break;
+//		}
+//		lineRenderer.SetColors(drawColor, drawColor); //开始、结束颜色
+//
+
 
 	}
 	
@@ -33,11 +50,27 @@ public class Rocket : MonoBehaviour {
 
 	void Update()
 	{
-		lineRenderer.SetPosition (0, this.transform.position+ new Vector3 (-1, 1, 0));  
-		lineRenderer.SetPosition (1,this.transform.position+  new Vector3 (1, 1, 0));  
-		lineRenderer.SetPosition (2,this.transform.position+  new Vector3 (1, -1, 0));  
-		lineRenderer.SetPosition (3,this.transform.position+  new Vector3 (-1, -1, 0));  
-		lineRenderer.SetPosition (4, this.transform.position+ new Vector3 (-1, 1, 0));  
+	//		lineRenderer.SetPosition (2,this.transform.position+  new Vector3 (1, -1, 0));  
+//		lineRenderer.SetPosition (3,this.transform.position+  new Vector3 (-1, -1, 0));  
+//		lineRenderer.SetPosition (4, this.transform.position+ new Vector3 (-1, 1, 0));  
+
+
+	}
+	public void runbullet()
+	{
+
+
+
+
+
+
+
+	}
+
+	void FixedUpdate () 
+	{
+		//为了暂停写在这里：
+		m_bulletTime -=Time.deltaTime;
 
 		// Update is called once per frame\
 		Ray ray = new Ray(transform.position, transform.up);  
@@ -45,54 +78,58 @@ public class Rocket : MonoBehaviour {
 		if(Physics.Raycast(ray, out hit, Mathf.Infinity))  
 		{
 			// 如果射线与平面碰撞，打印碰撞物体信息  
-			Debug.Log("碰撞对象: " + hit.collider.name);  
+
 			// 在场景视图中绘制射线  
 			Debug.DrawLine(ray.origin, hit.point, Color.red); 
 
-
-		}  
-	}
-
-	void FixedUpdate () {
-		//为了暂停写在这里：
-
-		m_bulletTime -=Time.deltaTime;
-
-		if(m_bulletTime<0)
-		{
-			//命数量>0 才能开炮
-			if((GameManager.gameManager.scoreManager.getLifetime())>0)
+			//			lineRenderer.SetPosition (0, this.transform.position+ new Vector3 (1, 1, 0));  
+			//			lineRenderer.SetPosition (1,this.transform.position+  new Vector3 (1, -1, 0));  
+			//			lineRenderer.SetPosition (0,ray.origin);  
+			//			lineRenderer.SetPosition (1,  hit.point+new Vector3 (0, 0, 0));  
+	
+			//run bullet
+			if(m_bulletTime<0)
 			{
-		   if(Input.GetKey(KeyCode.Space)||Input.GetMouseButton(0))	
-		   {
-				m_bulletTime=0.5f;
-					
-//			Debug.Log("First Step");
+				//命数量>0 才能开炮
+				if((GameManager.gameManager.scoreManager.getLifetime())>0)
+				{
+					if(Input.GetKey(KeyCode.Space)||Input.GetMouseButton(0))	
+					{
+						m_bulletTime=0.5f;
 
-			//	now_bullet=
-				GameObject obj = GameObject.Find("firePoint");
-				 
-				Instantiate(m_bullet,obj.transform.position,obj.transform.rotation);
+						//之前的碰撞检测
+//						GameObject obj = GameObject.Find("firePoint");
+//
+//						Instantiate(m_bullet,obj.transform.position,obj.transform.rotation);
+						Debug.Log("碰撞对象: " + hit.collider.name);  
+						if(hit.collider.name =="Cage")
+						{
+							GameObject cage =  hit.collider.gameObject;
+							cage.GetComponent<CageSprite>().CD_monster();
+						}else{
+							GameObject stone =  hit.collider.gameObject;
+							stone.GetComponent<StoneSprite>().	CD_stone();
+						}
 
-				GameManager.gameManager.reduceLifetime();
-			//	now_bullet.transform.Translate(new Vector3(0,0,0));
-		}
+						GameManager.gameManager.reduceLifetime();
+					}
+				}
 			}
-		}
+			//run bullet
 
+		} 
 
 		this.transform.Translate(move,0,0);
 
 		if(this.transform.localPosition.x>endPoint.transform.localPosition.x)
 		{
-//			this.transform.localPosition = new Vector3(-6.5f,this.transform.position.y,this.transform.position.z);
+			//			this.transform.localPosition = new Vector3(-6.5f,this.transform.position.y,this.transform.position.z);
 			m_bulletTime=0f;
 
 			this.transform.localPosition =	GameObject.Find("StartPoint").transform.localPosition;	
-//					this.transform.position.y,
-//					this.transform.position.z),1.0f*Time.deltaTime);
+			//					this.transform.position.y,
+			//					this.transform.position.z),1.0f*Time.deltaTime);
 		}
-
 	}
 
 
