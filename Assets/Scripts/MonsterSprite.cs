@@ -70,6 +70,10 @@ public class MonsterSprite : MonoBehaviour {
 			{
 				GameManager.gameManager.nextLevel();
 
+				GameObject obj = GameObject.Find("rocket");
+				Rocket _rocket = obj.GetComponent<Rocket>();
+				_rocket.reset_position();
+
 				is_game_win=false;
 				move_time=0;
 //				reset_position();

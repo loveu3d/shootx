@@ -136,11 +136,12 @@ public class LevelManager : MonoBehaviour {
 
 	public void resetLevel()
 	{
+//		level_id =4;
 
 //		Debug.Log("debug_log");
 		clear_sprites();
 
-		float rocket_per_distatn=0;
+		float rocket_per_distatn=0.4f;//火箭移动距离 每帧
 		int left_right=0;
 		int up_down=0;
 		float spaceX=0;
@@ -149,69 +150,101 @@ public class LevelManager : MonoBehaviour {
 		int level_add_life=0;
 		int stone_level=1;
 
+//	level_id =5;
+
 		//1
 		switch(level_id)
 		{
 		case 1:
 		{
-				rocket_per_distatn=0.2f; //火箭移动距离 每帧
-				left_right =6; //初始化左右砖数量
+				rocket_per_distatn=0.3f;
+				left_right =8; //初始化左右砖数量
 				up_down =3;
-				spaceX= 1.7f;
+				spaceX= 1.5f;
 				spaceY= 1.5f;
 				scale_value =3f;
-				level_add_life =9;	//当前关奖励的命数
 		}
 		break;
 		case 2:
 		{
-				rocket_per_distatn=0.2f; //火箭移动距离 每帧
-				left_right =9; //初始化左右砖数量
-				up_down =3;
-				spaceX= 1.4f;
+				rocket_per_distatn=0.32f;
+
+				left_right =11; //初始化左右砖数量
+				up_down =4;
+				spaceX= 1.2f;
 				spaceY= 1.2f;
 				scale_value =2.5f;
-				level_add_life =9;	//当前关奖励的命数
 		}
 			break;
 		case 3:
 			{
-				rocket_per_distatn=0.2f; //火箭移动距离 每帧
-				left_right =11; //初始化左右砖数量
-				up_down =3;
-				spaceX= 1.2f;
+				rocket_per_distatn=0.34f;
+
+				left_right =13; //初始化左右砖数量
+				up_down =5;
+				spaceX= 1f;
 				spaceY= 1f;
 				scale_value =2f;
-				level_add_life =9;	//当前关奖励的命数
 			}
 			break;
 		case 4:
 			{
-				rocket_per_distatn=0.2f; //火箭移动距离 每帧
-				left_right =13; //初始化左右砖数量
-				up_down =3;
-				spaceX= 1f;
+				rocket_per_distatn=0.36f;
+
+				left_right =15; //初始化左右砖数量
+				up_down =6;
+				spaceX= 0.9f;
 				spaceY= 0.8f;
+				scale_value =1.75f;
+			}
+			break;
+		case 5:
+			{
+				rocket_per_distatn=0.38f;
+
+				left_right =17; //初始化左右砖数量
+				up_down =8;
+				spaceX= 0.8f;
+				spaceY= 0.7f;
 				scale_value =1.5f;
-				level_add_life =9;	//当前关奖励的命数
+			}
+			break;
+		case 6:
+			{
+				rocket_per_distatn=0.4f;//火箭移动距离 每帧
+				left_right =17; //初始化左右砖数量
+				up_down =6;
+				spaceX= 0.8f;
+				spaceY= 0.7f;
+				scale_value =1.5f;
+				stone_level=2;
+			}
+			break;
+		case 7:
+			{
+				rocket_per_distatn=0.48f;//火箭移动距离 每帧
+				left_right =17; //初始化左右砖数量
+				up_down =5;
+				spaceX= 0.8f;
+				spaceY= 0.7f;
+				scale_value =1.5f;
+				stone_level=3;
 			}
 			break;
 			default:
 			{
-				rocket_per_distatn=0.2f; //火箭移动距离 每帧
-				left_right =13; //初始化左右砖数量
-				up_down =3;
-				spaceX= 1f;
-				spaceY= 0.8f;
+				rocket_per_distatn=0.48f;//火箭移动距离 每帧
+				left_right =17; //初始化左右砖数量
+				up_down =6;
+				spaceX= 0.8f;
+				spaceY= 0.7f;
 				scale_value =1.5f;
-				level_add_life = 9;	//当前关奖励的命数
-				stone_level = 2;	//当前关奖励的命数
-
+				stone_level=3;
 			}
 			break;
 		}
-		create_stones(left_right,up_down+level_id,spaceX,spaceY,scale_value,1);
-		create_monster(left_right/2, 0 ,spaceX,spaceY,scale_value,(level_id)%10);
+		create_stones(left_right,up_down,spaceX,spaceY,scale_value,stone_level);
+		create_monster(left_right/2, 0 ,spaceX,spaceY,scale_value,(level_id)%10+1);
 		set_rocket_distant(rocket_per_distatn);
 		level_To_add_life(level_add_life);
 

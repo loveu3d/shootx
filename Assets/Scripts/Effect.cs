@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Effect : MonoBehaviour {
 		public Sprite[] Sprites;  
-		 float speed = 0.05f;  
+		 float speed = 0.03f;  
 		private SpriteRenderer spriterenderer;  
 		int index;
 		float interval;

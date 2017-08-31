@@ -23,9 +23,15 @@ public class Rocket : MonoBehaviour {
 
 	LineRenderer lineRenderer;
 
+	public void reset_position()
+	{
+		this.transform.localPosition =	GameObject.Find("StartPoint").transform.localPosition;	
+
+	}
+
 	// Use this for initialization
 	void Start () {
-		this.transform.localPosition =	GameObject.Find("StartPoint").transform.localPosition;	
+		reset_position();
 		endPoint = GameObject.Find("EndPoint");
 		m_bulletTime=0f;
 
@@ -103,6 +109,9 @@ public class Rocket : MonoBehaviour {
 			if(m_bulletTime<0)
 			{
 				//命数量>0 才能开炮
+//				Debug.Log("GameManager.gameManager:"+GameManager.gameManager);
+//				Debug.Log("gameManager.scoreManager:"+GameManager.gameManager.scoreManager);
+
 				if((GameManager.gameManager.scoreManager.getLifetime())>0)
 				{
 					if(Input.GetKey(KeyCode.Space)||Input.GetMouseButton(0))	

@@ -48,10 +48,11 @@ public class StoneSprite : MonoBehaviour {
 
 		refreshSprite(life);
 
+		Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
+		Instantiate(speed,gameObject.transform.position,gameObject.transform.rotation);
+
 		if(life==0)
 		{
-			Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
-			Instantiate(speed,gameObject.transform.position,gameObject.transform.rotation);
 
 
 			GameObject.Destroy(this.gameObject);

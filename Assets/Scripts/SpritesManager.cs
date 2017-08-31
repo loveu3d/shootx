@@ -32,7 +32,7 @@ public class SpritesManager : MonoBehaviour {
 	void changeBG()
 	{
 //		Texture2D texture2d ;
-		string path ;
+		string path;
 		if(GameManager.game_id==1)
 		{
 			path= "bg02";
