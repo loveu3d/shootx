@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
-
+	public AudioSource sound;
 	// Use this for initialization
 	void Start () {
 
@@ -13,7 +13,10 @@ public class SoundManager : MonoBehaviour {
 	void Update () {
 
 	}
-
+	public void PlayBiu()
+	{
+		sound.Play();
+	}
 	public void PlayBg1()
 	{
 	

@@ -109,6 +109,8 @@ public class Rocket : MonoBehaviour {
 					{
 						if(Is_Game_win()==false)
 						{
+							GameManager.gameManager.soundManager.PlayBiu();
+
 						m_bulletTime=0.5f;
 
 						//之前的碰撞检测
