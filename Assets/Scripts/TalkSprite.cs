@@ -27,7 +27,7 @@ public class TalkSprite : MonoBehaviour {
 
 			if(time_ticket<time1)
 			{
-	    	 this.transform.localScale = this.transform.localScale + new Vector3(0.01f,0.01f,0.01f);
+	    	 this.transform.localScale = this.transform.localScale + new Vector3(0.005f,0.005f,1f);
 			}
 			if(time_ticket>time1&& time_ticket<time2)
 			{

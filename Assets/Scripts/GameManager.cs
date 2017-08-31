@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour {
 
 //		CageMonster
 //		reset_position
-		GameManager.gameManager.setLifetime(	GameManager.gameManager.getLifetime()+5);
+		GameManager.gameManager.setLifetime(	GameManager.gameManager.getLifetime()
+			+levelManager. get_level_to_add_life());
 		levelManager.nextLevel();
 	}
 	public int getLifetime()
