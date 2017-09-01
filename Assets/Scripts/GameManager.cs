@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour {
 	{
 		will_game_over=false;
 		will_game_ticket=0;
+
 	}
 
 	public void resetLevel()
@@ -142,6 +143,7 @@ public class GameManager : MonoBehaviour {
 	}
 	public void EnterGame()
 	{
+		soundManager.PlayBGM("bgm");
 		change_button_pic();
 		RetryGame();
 	}
@@ -172,7 +174,9 @@ public class GameManager : MonoBehaviour {
 		reset_level_data();
 
 		levelManager.set_level_id(1);
-		
+
+		GameManager.gameManager.scoreManager.resetScores();
+
 		setLifetime(20);
 
 		setGameOverVisible(false);

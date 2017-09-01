@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 	public AudioSource sound;
+	public AudioSource bgm;
+
 	// Use this for initialization
 	void Start () {
 
 	}
-
+	public void PlayBGM(string str)
+	{
+		AudioClip clip =(AudioClip)Resources.Load("Sound/"+"bgm", typeof(AudioClip));//调用Resources方法加载AudioClip资源
+//		bgm
+		bgm.clip = clip;
+		bgm.loop=true;
+		bgm.Play();
+	}
 	public void Play(string str)
 	{
 		AudioClip clip =(AudioClip)Resources.Load("Sound/"+str, typeof(AudioClip));//调用Resources方法加载AudioClip资源
@@ -16,19 +25,12 @@ public class SoundManager : MonoBehaviour {
 	}
 	public void PlayAudioClip(AudioClip clip)
 	{
-		GameObject gameObject = GameObject.Find("Main Camera");
-
-		if (clip== null)
-			return;
-		AudioSource source = (AudioSource)gameObject.GetComponent("AudioSource");
-		if (source == null)
-			source =(AudioSource)gameObject.AddComponent<AudioSource>();
-		source.clip = clip;
+		sound.clip = clip;
 //		source.minDistance= 1.0f;
 //		source.maxDistance= 50;
 //		source.rolloffMode= AudioRolloffMode.Linear;
 //		source.transform.position =transform.position;
-		source.Play();
+		sound.Play();
 	}
 
 	// Update is called once per frame

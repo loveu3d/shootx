@@ -20,3 +20,5 @@
 /Developer/unity3d project/shootx/Temp/bin/Debug/Unity.CecilTools.dll
 /Developer/unity3d project/shootx/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Developer/unity3d project/shootx/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Developer/unity3d project/shootx/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Developer/unity3d project/shootx/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb

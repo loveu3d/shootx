@@ -20,6 +20,12 @@ public class CageSprite : MonoBehaviour {
 
 	public void CD_monster()
 	{
+		//隐藏石头
+		GameObject obj4= GameObject.Find("heart_CD");
+		HeartCD hh= obj4.GetComponent<HeartCD>();
+		hh.set_HeartCD();
+
+		//声音
 		GameManager.gameManager.soundManager.PlaySound("boom");
 		GameManager.gameManager.soundManager.PlayWin();
 

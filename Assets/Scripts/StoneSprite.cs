@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+//using NarayanaGames.Common;
+//using NarayanaGames.Common.UI;
+//using NarayanaGames.ScoreFlashComponent;
 
 public class StoneSprite : MonoBehaviour {
 	public GameObject effect;
@@ -62,14 +66,35 @@ public class StoneSprite : MonoBehaviour {
 
 		}
 	}
+
+//	private ScoreMessage msg;
+
 	public void CD_Heart_stone()
 	{
+		Debug.Log("1234");
+		Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
+
 		this.gameObject.SetActive(false);
+
+		//创建字体
+//		GameObject obj = Resources.Load("Prefabs/text_3d")
+
+		GameObject obj =	Resources.Load<GameObject>("Prefabs/text_3d");
+		obj = Instantiate(obj,this.transform.position,gameObject.transform.rotation);
+		obj.transform.parent = this.transform.parent;
+		TextMesh tm = obj.GetComponent<TextMesh>();
+		int scores = 10*life;
+		tm.text = ""+scores;
+
+		GameManager.gameManager.scoreManager.addScores(scores);
+
+//		PushForTesting("I could be sayin' somethin'!");
+//		msg = ScoreFlash.Instance.PushWorld(GetComponent<ScoreFlashFollow3D>(), "Bumping");
+
 	}
 	void OnTriggerEnter(Collider other)
 	{
-//		Debug.Log("123");
-		Debug.Log("123"+other.tag);
+		Debug.Log("123");
 
 		if(other.tag.CompareTo("heart_CD") == 0)
 		{

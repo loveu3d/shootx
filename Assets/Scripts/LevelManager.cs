@@ -268,7 +268,7 @@ public class LevelManager : MonoBehaviour {
 		create_stones(left_right,up_down,spaceX,spaceY,scale_value,stone_level,isRandom);
 
 //		int monster_id = Random.Range(1,11);
-		int monster_id = (level_id%(10+1));
+		int monster_id = ((level_id-1)%(10)+1);
 
 		create_monster(left_right/2, 0 ,spaceX,spaceY,scale_value,monster_id);
 

@@ -9,6 +9,20 @@ public class ScoresManager : MonoBehaviour {
 	void Start () {
 		
 	}
+	public void resetScores()
+	{
+		GameObject ui_level_id = GameObject.Find("ui_score");
+		Text text =	ui_level_id.GetComponent<Text>();
+		text.text ="0";
+	}
+	public void addScores(int scores)
+	{
+		GameObject ui_level_id = GameObject.Find("ui_score");
+		Text text =	ui_level_id.GetComponent<Text>();
+		int number = int.Parse(text.text);//	Convert.ToString(text.text);
+		number+=scores;
+		text.text=""+number;
+	}
 	
 	// Update is called once per frame
 	void Update () {

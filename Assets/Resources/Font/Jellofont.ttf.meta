@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 1941a3d5ed5fc4338814aa8183976d2b
+timeCreated: 1504270254
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Jellyka jellyfish
+  fontNames:
+  - Jellyka jellyfish
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
