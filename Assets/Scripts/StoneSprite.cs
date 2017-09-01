@@ -68,7 +68,9 @@ public class StoneSprite : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("123");
+//		Debug.Log("123");
+		Debug.Log("123"+other.tag);
+
 		if(other.tag.CompareTo("heart_CD") == 0)
 		{
 			CD_Heart_stone();
