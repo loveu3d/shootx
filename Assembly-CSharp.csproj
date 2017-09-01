@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\MonsterSprite.cs" />
      <Compile Include="Assets\Scripts\Rocket.cs" />
      <Compile Include="Assets\Scripts\ScoresManager.cs" />
+     <Compile Include="Assets\Scripts\ShowFPS.cs" />
      <Compile Include="Assets\Scripts\SoundManager.cs" />
      <Compile Include="Assets\Scripts\Speed.cs" />
      <Compile Include="Assets\Scripts\SpritesManager.cs" />
