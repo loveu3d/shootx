@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour {
 
 		levelManager.set_level_id(1);
 		
-		setLifetime(400);
+		setLifetime(20);
 
 		setGameOverVisible(false);
 

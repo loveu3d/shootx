@@ -53,16 +53,23 @@ public class LevelManager : MonoBehaviour {
 
 	}
 
-	void create_stones(int indexX,int indexY,float spaceX,float spaceY,float scale_value,int life)
+	void create_stones(int indexX,int indexY,float spaceX,float spaceY,float scale_value,int life,bool is_random)
 	{
 		//注意：stones是从camera 中心生成
+		int _life = life;
+	
 
 		for (int i=(indexX)/2;i>=0;i--)
 		{
 			for (int j=0;j<indexY;j++)
 			{
+				if(is_random)
+				{
+					_life = Random.Range(1,4);
+				}
+
 				if(i==0&&j==0) continue;
-				create_stone(i,j,spaceX,spaceY,scale_value,life);
+				create_stone(i,j,spaceX,spaceY,scale_value,_life);
 			}
 		}
 
@@ -70,7 +77,12 @@ public class LevelManager : MonoBehaviour {
 		{
 			for (int j=0;j<indexY;j++)
 			{
-				create_stone(-i,j,spaceX,spaceY,scale_value,life);
+				if(is_random)
+				{
+					_life = Random.Range(1,3);
+				}
+
+				create_stone(-i,j,spaceX,spaceY,scale_value,_life);
 			}
 		}
 
@@ -150,110 +162,121 @@ public class LevelManager : MonoBehaviour {
 		int level_add_life=0;
 		int stone_level=1;
 
-//	level_id =5;
+// 		level_id =8;
 
 		//1
 		switch(level_id)
 		{
 		case 1:
 		{
-				rocket_per_distatn=0.3f;
+				rocket_per_distatn=0.4f;
 				left_right =8; //初始化左右砖数量
 				up_down =3;
 				spaceX= 1.5f;
 				spaceY= 1.5f;
 				scale_value =3f;
+				level_add_life=4;
 		}
 		break;
 		case 2:
 		{
-				rocket_per_distatn=0.32f;
-
+				rocket_per_distatn=0.42f;
 				left_right =11; //初始化左右砖数量
 				up_down =4;
 				spaceX= 1.2f;
 				spaceY= 1.2f;
 				scale_value =2.5f;
+				level_add_life=8;
 		}
 			break;
 		case 3:
 			{
-				rocket_per_distatn=0.34f;
-
+				rocket_per_distatn=0.44f;
 				left_right =13; //初始化左右砖数量
 				up_down =5;
 				spaceX= 1f;
 				spaceY= 1f;
 				scale_value =2f;
+				level_add_life=10;
 			}
 			break;
 		case 4:
 			{
-				rocket_per_distatn=0.36f;
-
+				rocket_per_distatn=0.46f;
 				left_right =15; //初始化左右砖数量
 				up_down =6;
 				spaceX= 0.9f;
 				spaceY= 0.8f;
 				scale_value =1.75f;
+				level_add_life=15;
 			}
 			break;
 		case 5:
 			{
-				rocket_per_distatn=0.38f;
-
+				rocket_per_distatn=0.48f;
 				left_right =17; //初始化左右砖数量
 				up_down =8;
 				spaceX= 0.8f;
 				spaceY= 0.7f;
 				scale_value =1.5f;
+				level_add_life=20;
 			}
 			break;
 		case 6:
 			{
-				rocket_per_distatn=0.4f;//火箭移动距离 每帧
+				rocket_per_distatn=0.5f;//火箭移动距离 每帧
 				left_right =17; //初始化左右砖数量
-				up_down =6;
+				up_down =4;
 				spaceX= 0.8f;
 				spaceY= 0.7f;
 				scale_value =1.5f;
 				stone_level=2;
+				level_add_life=25;
 			}
 			break;
 		case 7:
 			{
-				rocket_per_distatn=0.48f;//火箭移动距离 每帧
+				rocket_per_distatn=0.5f;//火箭移动距离 每帧
 				left_right =17; //初始化左右砖数量
 				up_down =5;
 				spaceX= 0.8f;
 				spaceY= 0.7f;
 				scale_value =1.5f;
 				stone_level=3;
+				level_add_life=30;
+
 			}
 			break;
+
 			default:
 			{
-				rocket_per_distatn=0.48f;//火箭移动距离 每帧
+				rocket_per_distatn=0.5f;//火箭移动距离 每帧
 				left_right =17; //初始化左右砖数量
 				up_down =6;
 				spaceX= 0.8f;
 				spaceY= 0.7f;
 				scale_value =1.5f;
 				stone_level=3;
+				level_add_life=25;
 			}
 			break;
 		}
-		create_stones(left_right,up_down,spaceX,spaceY,scale_value,stone_level);
-		create_monster(left_right/2, 0 ,spaceX,spaceY,scale_value,(level_id)%10+1);
+		bool isRandom=false;
+
+		if(level_id>7) isRandom=true;
+
+		create_stones(left_right,up_down,spaceX,spaceY,scale_value,stone_level,isRandom);
+
+		int monster_id = Random.Range(1,11);
+
+		create_monster(left_right/2, 0 ,spaceX,spaceY,scale_value,monster_id);
+
 		set_rocket_distant(rocket_per_distatn);
+
 		level_To_add_life(level_add_life);
-
-
-
-
-
-	
+			
 	}
+
 
 	public void enterGame1()
 	{
