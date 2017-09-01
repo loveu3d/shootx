@@ -11,12 +11,13 @@ public class HeartCD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+//		Debug.Log("dsffsdf");
+
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
-		Debug.Log(other.name);
+//		Debug.Log("dsffsdf");
 
 		if(other.tag.CompareTo("stone") == 0)
 		{

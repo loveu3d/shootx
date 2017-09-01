@@ -62,12 +62,16 @@ public class StoneSprite : MonoBehaviour {
 
 		}
 	}
-
+	public void CD_Heart_stone()
+	{
+		this.gameObject.SetActive(false);
+	}
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.tag.CompareTo("bullet") == 0)
+		Debug.Log("123");
+		if(other.tag.CompareTo("heart_CD") == 0)
 		{
-			CD_stone();
+			CD_Heart_stone();
 		}
 	}
 
