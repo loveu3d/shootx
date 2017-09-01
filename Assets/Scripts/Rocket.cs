@@ -118,7 +118,7 @@ public class Rocket : MonoBehaviour {
 					{
 						if(Is_Game_win()==false)
 						{
-							GameManager.gameManager.soundManager.PlayBiu();
+							GameManager.gameManager.soundManager.PlaySound("biu");
 
 						m_bulletTime=0.5f;
 

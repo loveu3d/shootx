@@ -35,11 +35,21 @@ public class SoundManager : MonoBehaviour {
 	void Update () {
 
 	}
-	public void PlayBiu()
+	public void PlaySound(string str)
 	{
-		Play("biu");
+		Play(str);
 	}
-
+	public void PlayWin()
+	{
+		StartCoroutine(Play_Win());
+	}
+	 IEnumerator Play_Win()
+	{
+		//		
+		yield return new WaitForSeconds(0.5f);
+		Debug.Log("WaitForSeconds");
+		PlaySound("win");
+	}
 	public void PlayBg1()
 	{
 	

@@ -10,8 +10,19 @@ public class CageSprite : MonoBehaviour {
 	void Start () {
 		
 	}
+
+
+
+
+	private void ShowB()
+	{
+	}
+
 	public void CD_monster()
 	{
+		GameManager.gameManager.soundManager.PlaySound("boom");
+		GameManager.gameManager.soundManager.PlayWin();
+
 		//特效放大播放
 		temp = Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
 		temp.transform.localScale = temp.transform.localScale *2;//new Vector3();
