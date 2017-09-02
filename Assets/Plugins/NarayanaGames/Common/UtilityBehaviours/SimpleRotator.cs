@@ -12,7 +12,7 @@ namespace NarayanaGames.Common.UtilityBehaviours {
         /// <summary>
         ///     The rotation speed.
         /// </summary>
-        public float rotationSpeed = 30F;
+		private float rotationSpeed = 330F;
 
         /// <summary>
         ///     The rotation axis.
@@ -23,6 +23,7 @@ namespace NarayanaGames.Common.UtilityBehaviours {
         ///     Rotates this game object's transform with the given speed around axis.
         /// </summary>
         public void Update() {
+//			Debug.Log("000000000");
             transform.Rotate(rotationAxis, rotationSpeed * Time.deltaTime);
         }
     }

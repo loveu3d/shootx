@@ -59,12 +59,6 @@
      <None Include="Assets\ScoreFlash - New Unity UI\README.txt" />
      <None Include="Assets\Editor\NarayanaGames\ScoreFlash\Tooltips.xml" />
      <None Include="Assets\Plugins\NarayanaGames\ScoreFlash-README.txt" />
- <Reference Include="Assembly-Boo">
- <HintPath>/Developer/unity3d project/shootx/Library/ScriptAssemblies/Assembly-Boo.dll</HintPath>
- </Reference>
- <Reference Include="Assembly-UnityScript">
- <HintPath>/Developer/unity3d project/shootx/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>

@@ -71,7 +71,7 @@ public class StoneSprite : MonoBehaviour {
 
 	public void CD_Heart_stone()
 	{
-		Debug.Log("1234");
+//		Debug.Log("1234");
 		Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
 
 		this.gameObject.SetActive(false);
@@ -88,7 +88,9 @@ public class StoneSprite : MonoBehaviour {
 		switch(life)
 		{
 		case 1:
-			{ tm.color =Color.green; }
+			{ tm.color =Color.green; //
+			
+			}
 			break;
 		case 2 :
 			{ tm.color =Color.yellow; }
@@ -104,13 +106,15 @@ public class StoneSprite : MonoBehaviour {
 
 //		PushForTesting("I could be sayin' somethin'!");
 //		msg = ScoreFlash.Instance.PushWorld(GetComponent<ScoreFlashFollow3D>(), "Bumping");
-		ScoreFlash.Push("+"+tm.text);
+//		ScoreFlash.Push("");
+		//		ScoreFlash.Push("+"+tm.text);
+
 //			. Push("+"+tm.text); // <--- this is all there is to it!!!
 
 	}
 	void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("123");
+//		Debug.Log("123");
 
 		if(other.tag.CompareTo("heart_CD") == 0)
 		{
