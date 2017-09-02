@@ -49,7 +49,7 @@ public class SoundManager : MonoBehaviour {
 	{
 		//		
 		yield return new WaitForSeconds(0.5f);
-		Debug.Log("WaitForSeconds");
+//		Debug.Log("WaitForSeconds");
 		PlaySound("win");
 	}
 	public void PlayBg1()

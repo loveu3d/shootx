@@ -46,6 +46,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ScoreFlash - New Unity UI\AchievementsExample\AchievementGeneratorUnityUI.cs" />
+     <Compile Include="Assets\ScoreFlash - New Unity UI\AchievementsExample\AchievementsCustomRendererUnityUI.cs" />
+     <Compile Include="Assets\ScoreFlash - New Unity UI\Example-MessagesIn3DSpace\ScoreFlashRendererUnityUI3D.cs" />
+     <Compile Include="Assets\ScoreFlash - New Unity UI\ScoreFlashRendererUnityUI.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\CageSprite.cs" />
      <Compile Include="Assets\Scripts\Effect.cs" />
@@ -62,6 +66,26 @@
      <Compile Include="Assets\Scripts\StoneSprite.cs" />
      <Compile Include="Assets\Scripts\TalkSprite.cs" />
      <Compile Include="Assets\Scripts\UIManager.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Advanced\AchievementsExample\AchievementGenerator.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Advanced\AchievementsExample\AchievementsCustomRenderer.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Advanced\AchievementsExample\AchievementsFollowers.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Advanced\MultipleInstancesOfScoreFlash\MultiScoreFlashMultiObject.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Advanced\ScoreFlashAsContextUI\AgentGUIController.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Advanced\ScoreFlashAsContextUI\AgentGUIRenderer.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Advanced\ScreenSpaceMessages\MouseClickMessagesCSharp.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Advanced\WorldSpaceMessages\Resources\WorldSpaceGUI.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Advanced\WorldSpaceMessages\Resources\WorldSpaceShooter.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Advanced\WorldSpaceMessages\WorldSpaceMessagesCSharp.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Advanced\Xample_XDemoScoreFlash\ScoreFlashDemoGUI.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Advanced\Xample_XDocsWebPlayer\XAwesome.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Advanced\XamplesGenericGUI.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\ExampleCSharp.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\ExampleCSharpMultipleInstances.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Xample_TestLayout.cs" />
+     <Compile Include="Assets\Xamples-ScoreFlash\Xample_TestLayoutRotator.cs" />
+     <None Include="Assets\ScoreFlash - New Unity UI\README.txt" />
+     <None Include="Assets\Editor\NarayanaGames\ScoreFlash\Tooltips.xml" />
+     <None Include="Assets\Plugins\NarayanaGames\ScoreFlash-README.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -83,6 +107,10 @@
  <Reference Include="UnityEngine.VR">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{308CD2CE-3265-4B87-AC98-03CA919727A1}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

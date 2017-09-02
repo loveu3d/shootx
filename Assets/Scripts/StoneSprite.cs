@@ -79,17 +79,33 @@ public class StoneSprite : MonoBehaviour {
 		//创建字体
 //		GameObject obj = Resources.Load("Prefabs/text_3d")
 
-		GameObject obj =	Resources.Load<GameObject>("Prefabs/text_3d");
+		GameObject obj =	Resources.Load<GameObject>("Prefabs/SFTextYellow");
 		obj = Instantiate(obj,this.transform.position,gameObject.transform.rotation);
-		obj.transform.parent = this.transform.parent;
-		TextMesh tm = obj.GetComponent<TextMesh>();
+//		obj.transform.parent = this.transform.parent;
+		obj.transform.SetParent(this.transform.parent);
+		Text tm = obj.transform.Find("Text").GetComponent<Text>();
 		int scores = 10*life;
+		switch(life)
+		{
+		case 1:
+			{ tm.color =Color.green; }
+			break;
+		case 2 :
+			{ tm.color =Color.yellow; }
+			break;
+		case 3:	
+			{ tm.color =Color.green; }
+			break;
+		}
+
 		tm.text = ""+scores;
 
 		GameManager.gameManager.scoreManager.addScores(scores);
 
 //		PushForTesting("I could be sayin' somethin'!");
 //		msg = ScoreFlash.Instance.PushWorld(GetComponent<ScoreFlashFollow3D>(), "Bumping");
+		ScoreFlash.Push("+"+tm.text);
+//			. Push("+"+tm.text); // <--- this is all there is to it!!!
 
 	}
 	void OnTriggerEnter(Collider other)

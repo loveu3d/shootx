@@ -22,7 +22,7 @@ public class HeartCD : MonoBehaviour {
 		{
 			scale_ticket +=Time.deltaTime;
 
-			float sss= 0.6f;
+			float sss= 2.0f;
 
 			if(scale_ticket>1.8f)
 			{
