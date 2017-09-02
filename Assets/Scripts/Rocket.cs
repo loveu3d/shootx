@@ -131,10 +131,14 @@ public class Rocket : MonoBehaviour {
 						{
 							GameObject cage =  hit.collider.gameObject;
 							cage.GetComponent<CageSprite>().CD_monster();
-						}else{
-							GameObject stone =  hit.collider.gameObject;
-							stone.GetComponent<StoneSprite>().	CD_stone();
-						}
+							}else if (hit.collider.name =="Fly"){
+								GameObject hf =  hit.collider.gameObject;
+								hf.GetComponent<HeartFly>().	CD_heart();
+						}else {
+								GameObject stone =  hit.collider.gameObject;
+								stone.GetComponent<StoneSprite>().	CD_stone();
+							}
+
 
 						GameManager.gameManager.reduceLifetime();
 						}

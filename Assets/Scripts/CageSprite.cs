@@ -20,6 +20,17 @@ public class CageSprite : MonoBehaviour {
 
 	public void CD_monster()
 	{
+		int random = Random.Range(1,4);
+		string str="" ;
+		switch(random)
+		{
+		case 1: str ="Nice"; break;
+		case 2:str ="Good"; break;
+		case 3: str ="Awesome"; break;
+		}
+		ScoreFlash.Push(str);
+
+
 		//隐藏石头
 		GameObject obj4= GameObject.Find("heart_CD");
 		HeartCD hh= obj4.GetComponent<HeartCD>();

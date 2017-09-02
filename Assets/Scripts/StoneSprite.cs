@@ -96,7 +96,7 @@ public class StoneSprite : MonoBehaviour {
 			{ tm.color =Color.yellow; }
 			break;
 		case 3:	
-			{ tm.color =Color.green; }
+			{ tm.color =Color.red; }
 			break;
 		}
 

@@ -52,6 +52,15 @@ public class LevelManager : MonoBehaviour {
 		Destroy(monster);
 
 	}
+	struct sss{
+		int a_max;
+		int a_life;
+		int b_max;
+		int b_life;
+		int c_max;
+		int c_life;
+	} ;
+
 
 	void create_stones(int indexX,int indexY,float spaceX,float spaceY,float scale_value,int life,bool is_random)
 	{

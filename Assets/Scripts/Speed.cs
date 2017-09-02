@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Speed : MonoBehaviour {
 		public Sprite[] Sprites;  
-		 float speed = 0.05f;  
-		private SpriteRenderer spriterenderer;  
-		int index;
+//		 float speed = 0.05f;  
+//		private SpriteRenderer spriterenderer;  
+//		int index;
 		float interval;
 		
 		void Start () {
-		spriterenderer = GetComponent<SpriteRenderer>(); 
-		index=0;
+//		spriterenderer = GetComponent<SpriteRenderer>(); 
+//		index=0;
 	//	spriterenderer.sprite = Sprites[index];
 		interval=0;
 		}
