@@ -133,7 +133,7 @@ public class Rocket : MonoBehaviour {
 							cage.GetComponent<CageSprite>().CD_monster();
 							}else if (hit.collider.name =="Fly"){
 								GameObject hf =  hit.collider.gameObject;
-								hf.GetComponent<HeartFly>().	CD_heart();
+								hf.GetComponent<Fly>().	CD_heart();
 						}else {
 								GameObject stone =  hit.collider.gameObject;
 								stone.GetComponent<StoneSprite>().	CD_stone();

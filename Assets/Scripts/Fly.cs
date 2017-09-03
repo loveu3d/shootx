@@ -6,7 +6,7 @@ using UnityEngine.UI;
 //using NarayanaGames.Common.UI;
 //using NarayanaGames.ScoreFlashComponent;
 
-public class HeartFly : MonoBehaviour {
+public class Fly : MonoBehaviour {
 	public GameObject effect;
 	public GameObject speed;
 	bool is_active;
@@ -37,6 +37,8 @@ public class HeartFly : MonoBehaviour {
 		int scores = 5;
 		tm.text = "life +"+scores;
 
+		TextRotate tr = obj.GetComponent<TextRotate>();
+		tr.set_type(2);
 //		this.gameObject. SetActive(false);
 
 //		this.gameObject.transform.position = 	this.gameObject.transform.position +new Vector3(0,0,3);
@@ -72,15 +74,15 @@ public class HeartFly : MonoBehaviour {
 	float radian = 0; // 弧度  
 	float perRadian = 0.03f; // 每次变化的弧度  
 	float radius = 0.05f; // 半径  
-	float move_distant=0.1f;
+	float move_distant=0.05f;
 	// Update is called once per frame  
 	void Update () {
-		return;
+//		return;
 		if(is_active)
 		{
 		radian += perRadian; // 弧度每次加0.03  
 		float dy = Mathf.Cos(radian*10) * radius; // dy定义的是针对y轴的变量，也可以使用sin，找到一个适合的值就可以  
-		this.transform.position = this.transform. position  + new Vector3 (move_distant, dy, 0); 
+			this.transform.parent.transform.position = this.transform.parent.transform. position  + new Vector3 (move_distant, dy, 0); 
 
 			if( this.transform. position.x>end.transform.position.x)
 			{

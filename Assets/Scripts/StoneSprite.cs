@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class StoneSprite : MonoBehaviour {
 	public GameObject effect;
 	public GameObject speed;
+//	public GameObject lighting;
 
 	public Sprite[] sprites;
 	private SpriteRenderer spriterenderer;  
@@ -55,6 +56,13 @@ public class StoneSprite : MonoBehaviour {
 		Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
 		Instantiate(speed,gameObject.transform.position,gameObject.transform.rotation);
 
+//		GameObject lighting =	Resources.Load<GameObject>("Prefabs/lighting");
+//		lighting=Instantiate(lighting,gameObject.transform.position,gameObject.transform.rotation);
+//		lighting.transform.SetParent(effect.transform);//=this.gameObject;
+
+//		GameObject lighting = Instantiate(Resources.Load("Prefabs/lighting")) as GameObject; 
+//		lighting.transform.SetParent(effect.transform.parent);
+
 		if(life==0)
 		{
 
@@ -69,9 +77,11 @@ public class StoneSprite : MonoBehaviour {
 
 //	private ScoreMessage msg;
 
+	//关卡结束，消失动画
 	public void CD_Heart_stone()
 	{
-//		Debug.Log("1234");
+		
+
 		Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
 
 		this.gameObject.SetActive(false);

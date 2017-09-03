@@ -5,11 +5,12 @@ using UnityEngine;
 public class TextRotate : MonoBehaviour {
 	int type =1;
 	// Use this for initialization
+	float rotate_ticket_2;
 	void Start () {
 		
 	}
 
-	void set_type(int _type)
+	public void set_type(int _type)
 	{
 		type = _type;
 	}
@@ -32,6 +33,18 @@ public class TextRotate : MonoBehaviour {
 		{
 		transform.Rotate(rotationAxis, rotationSpeed * Time.deltaTime);
 		}else{
+
+			rotate_ticket_2 +=Time.deltaTime;
+
+			float rotate_2=50;
+
+			if(rotate_ticket_2<0.5f)
+			{
+				transform.Rotate(rotationAxis, rotate_2 * Time.deltaTime);
+			}else{
+				transform.Rotate(rotationAxis, -rotate_2 * Time.deltaTime);
+
+			}
 
 		}
 
