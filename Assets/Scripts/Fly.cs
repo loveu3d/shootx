@@ -65,8 +65,8 @@ public class Fly : MonoBehaviour {
 
 
 		yield return new WaitForSeconds(waitTime);  
-		Debug.Log("DEEsssstry");
-		//等待之后执行的动作  
+//		Debug.Log("DEEsssstry");
+		//等待之后执行的动作  Ï
 		GameObject.Destroy(this.transform.parent.gameObject);
 	}    
 

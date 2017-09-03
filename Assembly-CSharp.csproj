@@ -50,6 +50,7 @@
      <Compile Include="Assets\ScoreFlash - New Unity UI\AchievementsExample\AchievementsCustomRendererUnityUI.cs" />
      <Compile Include="Assets\ScoreFlash - New Unity UI\Example-MessagesIn3DSpace\ScoreFlashRendererUnityUI3D.cs" />
      <Compile Include="Assets\ScoreFlash - New Unity UI\ScoreFlashRendererUnityUI.cs" />
+     <Compile Include="Assets\Scripts\BossSprite.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\CageSprite.cs" />
      <Compile Include="Assets\Scripts\Effect.cs" />

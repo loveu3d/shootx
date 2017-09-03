@@ -50,6 +50,7 @@ public class CageSprite : MonoBehaviour {
 		GameObject cageMonster = this.transform.parent.gameObject;
 		GameObject monsterObject = cageMonster.transform.FindChild("Monster").gameObject;
 		MonsterSprite ms = monsterObject.GetComponent<MonsterSprite>();
+		ms.set_monster_animation(2);
 		ms.StartMove();
 		//				//显示对话框
 		GameObject talkObject = cageMonster.transform.FindChild("Talk").gameObject;

@@ -124,12 +124,10 @@ public class LevelManager : MonoBehaviour {
 		GameObject monster =	Resources.Load<GameObject>("Prefabs/CageMonster");
 		monster = Instantiate(monster,monster.transform.position,monster.transform.rotation);
 		monster.name = "CageMonster";
-
 		monster.transform.localScale = new Vector3(scale_value,scale_value,1);
-
 		monster.transform.position= new Vector3(camera.transform.position.x,camera.transform.position.y+obj4.transform.position.y,obj3.transform.position.z) +new Vector3(0,-indexY*spaceY,0);
 		MonsterSprite ms = monster.transform.FindChild("Monster").GetComponent<MonsterSprite>();
-		ms.set_monster_id(id);
+		ms.set_monster_animation(id);
 	}
 
 	public void nextLevel()
@@ -154,13 +152,60 @@ public class LevelManager : MonoBehaviour {
 	{
 		level_to_add_life = _level_add_life;
 	}
+	public void create_boss_level()
+	{
+		int boss_id = ((level_id/5))%(10);//控制在0-9之间的图片
+		GameObject camera = GameObject.Find("Main Camera");//x  y
+		GameObject obj3 = GameObject.Find("StartPoint");//z
+//		GameObject obj4 = GameObject.Find("level_stonepoint_y");//y
+
+		GameObject monster =	Resources.Load<GameObject>("Prefabs/Boss");
+		monster = Instantiate(monster,monster.transform.position,monster.transform.rotation);
+		monster.name = "Boss";
+//		monster.transform.localScale = new Vector3(scale_value,scale_value,1);
+		monster.transform.position= new Vector3(camera.transform.position.x,camera.transform.position.y,obj3.transform.position.z);
+		BossSprite ms = monster.transform.GetComponent<BossSprite>();
+		ms.set_monster_id(boss_id);
+	}
+	public void create_fly_life()
+	{
+		GameObject camera = GameObject.Find("Main Camera");//x  y
+		GameObject obj3 = GameObject.Find("StartPoint");//z
+		//		GameObject obj4 = GameObject.Find("level_stonepoint_y");//y
+
+		GameObject monster =	Resources.Load<GameObject>("Prefabs/Fly");
+		monster = Instantiate(monster,monster.transform.position,monster.transform.rotation);
+		monster.name = "Fly";
+		//		monster.transform.localScale = new Vector3(scale_value,scale_value,1);
+		monster.transform.position= 
+			new Vector3(
+			-2+camera.transform.position.x+obj3.transform.position.x,
+			2+camera.transform.position.y+obj3.transform.position.y,
+			obj3.transform.position.z);
+//		BossSprite ms = monster.transform.GetComponent<BossSprite>();
+//		ms.set_monster_id(boss_id);
+	}
 
 	public void resetLevel()
 	{
-//		level_id =4;
+		level_id =5;
 
 //		Debug.Log("debug_log");
 		clear_sprites();
+
+		int fly_random = Random.Range(1,4);
+		if(fly_random==2)
+		{
+		create_fly_life();
+		}
+
+		int level_per_boss =5;
+		if(level_id%level_per_boss==0)//每隔level_per_boss关一个boss
+		{
+			create_boss_level();
+
+			return;
+		}
 
 		float rocket_per_distatn=0.4f;//火箭移动距离 每帧
 		int left_right=0;

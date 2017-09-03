@@ -78,12 +78,6 @@ public class Rocket : MonoBehaviour {
 
 	}
 
-	public bool Is_Game_win()
-	{
-		GameObject obj = GameObject.Find("Monster");
-		MonsterSprite sprite = obj.GetComponent<MonsterSprite>();
-		return sprite.Is_game_win();
-	}
 
 	void FixedUpdate () 
 	{
@@ -116,7 +110,7 @@ public class Rocket : MonoBehaviour {
 				{
 					if(Input.GetKey(KeyCode.Space)||Input.GetMouseButton(0))	
 					{
-						if(Is_Game_win()==false)
+						if(GameManager.gameManager.Is_game_win()==false)
 						{
 							GameManager.gameManager.soundManager.PlaySound("biu");
 
@@ -134,7 +128,11 @@ public class Rocket : MonoBehaviour {
 							}else if (hit.collider.name =="Fly"){
 								GameObject hf =  hit.collider.gameObject;
 								hf.GetComponent<Fly>().	CD_heart();
-						}else {
+							}else if (hit.collider.name =="Boss"){
+								GameObject hf =  hit.collider.gameObject;
+								hf.GetComponent<BossSprite>().CD_boss();
+							}else {
+								Debug.Log(hit.collider.name);
 								GameObject stone =  hit.collider.gameObject;
 								stone.GetComponent<StoneSprite>().	CD_stone();
 							}

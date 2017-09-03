@@ -30,15 +30,15 @@ public class Bullet : MonoBehaviour {
 	}
 
 
-	void OnTriggerEnter(Collider other)
-	{
-//		Debug.Log("(Collider other)");
-
-		if(other.tag.CompareTo("stone") == 0)
-		{
-			GameObject.Destroy(this.gameObject);
-		}
-	}
+//	void OnTriggerEnter(Collider other)
+//	{
+////		Debug.Log("(Collider other)");
+//
+//		if(other.tag.CompareTo("stone") == 0)
+//		{
+//			GameObject.Destroy(this.gameObject);
+//		}
+//	}
 
 }
 

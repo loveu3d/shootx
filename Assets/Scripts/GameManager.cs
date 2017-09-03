@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour {
 	public float will_game_time=1.0f;
 	public float will_game_ticket;
 
+	bool is_game_win;
+
 	void Start () {
 		gameManager=this;
 
@@ -72,7 +74,14 @@ public class GameManager : MonoBehaviour {
 		scoreManager.setLifetime(lifetime);
 	}
 
-
+	public bool Is_game_win()
+	{
+		return is_game_win;
+	}
+	public void set_gamewin(bool sss)
+	{
+		is_game_win = sss;
+	}
 	public void reduceLifetime()
 	{
 		scoreManager.reduceLifetime();
@@ -80,7 +89,7 @@ public class GameManager : MonoBehaviour {
 		{
 			GameObject obj = GameObject.Find("Monster");
 			MonsterSprite sprite = obj.GetComponent<MonsterSprite>();
-			if(sprite.Is_game_win()) return; 
+			if(Is_game_win()) return; 
 			will_game_over=true;
 		}
 	}
