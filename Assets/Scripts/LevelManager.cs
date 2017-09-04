@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour {
 	} ;
 
 
-	void create_stones(int indexX,int indexY,float spaceX,float spaceY,float scale_value,int life,bool is_random)
+	void create_stones(int indexX,int indexY,float spaceX,float spaceY,float scale_value,int life,bool is_random,bool is_boos_level)
 	{
 		//注意：stones是从camera 中心生成
 		int _life = life;
@@ -76,8 +76,11 @@ public class LevelManager : MonoBehaviour {
 				{
 					_life = Random.Range(1,4);
 				}
+				if(is_boos_level==false)
+				{
+				if(i==0&&j==0) continue;//只有boss关卡中间不生成jelly
+				}
 
-				if(i==0&&j==0) continue;
 				create_stone(i,j,spaceX,spaceY,scale_value,_life);
 			}
 		}
@@ -115,7 +118,7 @@ public class LevelManager : MonoBehaviour {
 
 	}
 
-	public void create_monster(int indexX,float indexY,float spaceX,float spaceY,float scale_value,int id)
+	public void create_monster(int indexX,float indexY,float spaceX,float spaceY,float scale_value)
 	{
 		GameObject camera = GameObject.Find("Main Camera");//x  y
 		GameObject obj3 = GameObject.Find("StartPoint");//z
@@ -127,7 +130,7 @@ public class LevelManager : MonoBehaviour {
 		monster.transform.localScale = new Vector3(scale_value,scale_value,1);
 		monster.transform.position= new Vector3(camera.transform.position.x,camera.transform.position.y+obj4.transform.position.y,obj3.transform.position.z) +new Vector3(0,-indexY*spaceY,0);
 		MonsterSprite ms = monster.transform.FindChild("Monster").GetComponent<MonsterSprite>();
-		ms.set_monster_animation(id);
+		ms.set_monster_animation(1);
 	}
 
 	public void nextLevel()
@@ -188,24 +191,29 @@ public class LevelManager : MonoBehaviour {
 
 	public void resetLevel()
 	{
-//		level_id =5;
-
-//		Debug.Log("debug_log");
 		clear_sprites();
+
+		level_id=5;
 
 		int fly_random = Random.Range(1,4);
 		if(fly_random==2)
 		{
 		create_fly_life();
 		}
+		bool is_boss_level=false;
 
 		int level_per_boss =5;
+
 		if(level_id%level_per_boss==0)//每隔level_per_boss关一个boss
 		{
-			create_boss_level();
-
-			return;
+			is_boss_level=true;
 		}
+
+		if(		is_boss_level)
+		{
+			create_boss_level();
+		}
+
 
 		float rocket_per_distatn=0.4f;//火箭移动距离 每帧
 		int left_right=0;
@@ -215,10 +223,23 @@ public class LevelManager : MonoBehaviour {
 		float scale_value=0;
 		int level_add_life=0;
 		int stone_level=1;
+		bool isRandom=false;
 
-// 		level_id =8;
 
-		//1
+		if(is_boss_level)
+		{
+			rocket_per_distatn=0.5f;//火箭移动距离 每帧
+			left_right =21; //初始化左右砖数量
+			up_down =1;
+			spaceX= 0.8f;
+			spaceY= 0.7f;
+			scale_value =1.5f;
+			stone_level=4;
+			level_add_life=20;
+		}
+		else{
+		//创建普通关卡
+		if(level_id>7) isRandom=true;
 		switch(level_id)
 		{
 		case 1:
@@ -315,19 +336,18 @@ public class LevelManager : MonoBehaviour {
 			}
 			break;
 		}
-		bool isRandom=false;
+		}
 
-		if(level_id>7) isRandom=true;
-
-		create_stones(left_right,up_down,spaceX,spaceY,scale_value,stone_level,isRandom);
-
-//		int monster_id = Random.Range(1,11);
-		int monster_id = ((level_id-1)%(10)+1);
-
-		create_monster(left_right/2, 0 ,spaceX,spaceY,scale_value,monster_id);
-
+		//创建石头
+		create_stones(left_right,up_down,spaceX,spaceY,scale_value,stone_level,isRandom,is_boss_level);
+		//创建怪物
+		if(is_boss_level==false)
+		{
+		create_monster(left_right/2, 0 ,spaceX,spaceY,scale_value);
+		}
+		//当前关卡移动距离
 		set_rocket_distant(rocket_per_distatn);
-
+		//完成当前关卡增加的命数
 		level_To_add_life(level_add_life);
 			
 	}
