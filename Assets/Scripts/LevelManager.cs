@@ -193,7 +193,7 @@ public class LevelManager : MonoBehaviour {
 	{
 		clear_sprites();
 
-		level_id=5;
+//		level_id=5;
 
 		int fly_random = Random.Range(1,4);
 		if(fly_random==2)

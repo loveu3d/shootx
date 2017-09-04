@@ -42,9 +42,9 @@ public class MonsterSprite : MonoBehaviour {
 
 	public void StartMove()
 	{
-		GameManager.gameManager.set_gamewin(true);
+		GameManager.instance.set_gamewin(true);
 
-		GameManager.gameManager.reset_level_data();
+		GameManager.instance.reset_level_data();
 
 		//	Debug.Log("StartMove");
 	}
@@ -56,14 +56,14 @@ public class MonsterSprite : MonoBehaviour {
 	// Update is called once per frame  
 	void Update () 
 	{
-		if(	GameManager.gameManager.Is_game_win()==false)
+		if(	GameManager.instance.Is_game_win()==false)
 		{
 		radian += perRadian; // 弧度每次加0.03  
 		float dy = Mathf.Cos(radian*10) * radius; // dy定义的是针对y轴的变量，也可以使用sin，找到一个适合的值就可以  
 		this.transform.position = this.transform. position  + new Vector3 (dy, 0, 0); 
 		}
 
-		if(	GameManager.gameManager.Is_game_win() == true)
+		if(	GameManager.instance.Is_game_win() == true)
 		{
 			move_time+=Time.deltaTime;
 			if(move_time>1.0f)
@@ -73,13 +73,13 @@ public class MonsterSprite : MonoBehaviour {
 			}
 			if(move_time>2.0)
 			{
-				GameManager.gameManager.nextLevel();
+				GameManager.instance.nextLevel();
 
 				GameObject obj = GameObject.Find("rocket");
 				Rocket _rocket = obj.GetComponent<Rocket>();
 				_rocket.reset_position();
 
-				GameManager.gameManager.set_gamewin(false);
+				GameManager.instance.set_gamewin(false);
 				move_time=0;
 //				reset_position();
 				Destroy( transform.parent.gameObject);

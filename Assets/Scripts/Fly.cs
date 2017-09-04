@@ -27,7 +27,7 @@ public class Fly : MonoBehaviour {
 		Instantiate(effect,gameObject.transform.parent.position,gameObject.transform.parent.rotation);
 		Instantiate(speed,gameObject.transform.parent.position,gameObject.transform.parent.rotation);
 
-		GameManager.gameManager.setLifetime(GameManager.gameManager.getLifetime()+5);
+		GameManager.instance.setLifetime(GameManager.instance.getLifetime()+5);
 
 		GameObject obj =	Resources.Load<GameObject>("Prefabs/SFTextYellow");
 		obj = Instantiate(obj,this.transform.parent.position,gameObject.transform.parent.rotation);

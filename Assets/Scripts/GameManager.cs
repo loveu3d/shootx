@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
-	public static GameManager gameManager;
+	public static GameManager instance;
 	public static int game_id;
 
 	SpritesManager spritesManager;
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
 	bool is_game_win;
 
 	void Start () {
-		gameManager=this;
+		instance=this;
 
 		game_id=1;
 		will_game_time=1.0f;
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour {
 
 //		CageMonster
 //		reset_position
-		GameManager.gameManager.setLifetime(	GameManager.gameManager.getLifetime()
+		GameManager.instance.setLifetime(	GameManager.instance.getLifetime()
 			+levelManager. get_level_to_add_life());
 		levelManager.nextLevel();
 	}
@@ -184,7 +184,7 @@ public class GameManager : MonoBehaviour {
 
 		levelManager.set_level_id(1);
 
-		GameManager.gameManager.scoreManager.resetScores();
+		GameManager.instance.scoreManager.resetScores();
 
 		setLifetime(20);
 

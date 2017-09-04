@@ -37,8 +37,8 @@ public class CageSprite : MonoBehaviour {
 		hh.set_HeartCD();
 
 		//声音
-		GameManager.gameManager.soundManager.PlaySound("boom");
-		GameManager.gameManager.soundManager.PlayWin();
+		GameManager.instance.soundManager.PlaySound("boom");
+		GameManager.instance.soundManager.PlayWin();
 
 		//特效放大播放
 		temp = Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);

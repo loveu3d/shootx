@@ -106,13 +106,13 @@ public class Rocket : MonoBehaviour {
 //				Debug.Log("GameManager.gameManager:"+GameManager.gameManager);
 //				Debug.Log("gameManager.scoreManager:"+GameManager.gameManager.scoreManager);
 
-				if((GameManager.gameManager.scoreManager.getLifetime())>0)
+				if((GameManager.instance.scoreManager.getLifetime())>0)
 				{
 					if(Input.GetKey(KeyCode.Space)||Input.GetMouseButton(0))	
 					{
-						if(GameManager.gameManager.Is_game_win()==false)
+						if(GameManager.instance.Is_game_win()==false)
 						{
-							GameManager.gameManager.soundManager.PlaySound("biu");
+							GameManager.instance.soundManager.PlaySound("biu");
 
 						m_bulletTime=0.5f;
 
@@ -138,7 +138,7 @@ public class Rocket : MonoBehaviour {
 							}
 
 
-						GameManager.gameManager.reduceLifetime();
+							GameManager.instance.reduceLifetime();
 						}
 
 					}

@@ -96,7 +96,7 @@ public class StoneSprite : MonoBehaviour {
 
 		tm.text = ""+scores;
 
-		GameManager.gameManager.scoreManager.addScores(scores);
+		GameManager.instance.scoreManager.addScores(scores);
 
 //		PushForTesting("I could be sayin' somethin'!");
 //		msg = ScoreFlash.Instance.PushWorld(GetComponent<ScoreFlashFollow3D>(), "Bumping");

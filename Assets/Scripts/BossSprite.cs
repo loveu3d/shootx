@@ -63,9 +63,9 @@ public class BossSprite : MonoBehaviour {
 
 	public void StartMove()
 	{
-		GameManager.gameManager.set_gamewin(true);
+		GameManager.instance.set_gamewin(true);
 
-		GameManager.gameManager.reset_level_data();
+		GameManager.instance.reset_level_data();
 
 		//	Debug.Log("StartMove");
 	}
@@ -97,7 +97,7 @@ public class BossSprite : MonoBehaviour {
 		if(life==0)
 		{
 			CD_Heart_stone();
-			GameManager.gameManager.set_gamewin(true);
+			GameManager.instance.set_gamewin(true);
 //			ff
 //			GameObject.Destroy(this.gameObject);
 
@@ -157,19 +157,19 @@ public class BossSprite : MonoBehaviour {
 			float dy = Mathf.Cos(radian*(float)5) * radius; // dy定义的是针对y轴的变量，也可以使用sin，找到一个适合的值就可以  
 		this.transform.position = this.transform. position  + new Vector3 (dy, 0, 0);  
 		//		Debug.Log(""+this.gameObject.name+": random_pos:"+random_pos);
-		if(GameManager.gameManager.Is_game_win())
+		if(GameManager.instance.Is_game_win())
 		{
 			move_time +=Time.deltaTime;
 
 		   if(move_time>1.0)
 		   {
-			GameManager.gameManager.nextLevel();
+				GameManager.instance.nextLevel();
 
 			GameObject obj = GameObject.Find("rocket");
 			Rocket _rocket = obj.GetComponent<Rocket>();
 			_rocket.reset_position();
 
-			GameManager.gameManager.set_gamewin(false);
+				GameManager.instance.set_gamewin(false);
 			move_time=0;
 			//				reset_position();
 			Destroy( transform.gameObject);
