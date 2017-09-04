@@ -188,7 +188,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void resetLevel()
 	{
-		level_id =5;
+//		level_id =5;
 
 //		Debug.Log("debug_log");
 		clear_sprites();
