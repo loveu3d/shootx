@@ -195,18 +195,24 @@ public class LevelManager : MonoBehaviour {
 //		BossSprite ms = monster.transform.GetComponent<BossSprite>();
 //		ms.set_monster_id(boss_id);
 	}
-
+	int temp__=5;
 	public void resetLevel()
 	{
 		clear_sprites();
 
-		level_id=5;
+//		if(level_id==1)level_id=0;
+		level_id-=1;
+		level_id +=temp__;
 
+		Debug.Log("level_id:"+level_id);
+		//-------fly
 		int fly_random = Random.Range(1,4);
 		if(fly_random==2)
 		{
 		create_fly_life();
 		}
+		//-------fly end
+
 		bool is_boss_level=false;
 
 		int level_per_boss =5;
