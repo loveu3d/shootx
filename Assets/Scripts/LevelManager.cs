@@ -143,7 +143,7 @@ public class LevelManager : MonoBehaviour {
 	public void set_rocket_distant(float dis)
 	{
 		GameObject obj = GameObject.Find("rocket");
-		Rocket _rocket = obj.GetComponent<Rocket>();
+		RocketSprite _rocket = obj.GetComponent<RocketSprite>();
 		_rocket.set_rocket_distant(dis);
 	}
 	public int get_level_to_add_life()

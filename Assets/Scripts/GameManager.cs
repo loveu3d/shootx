@@ -38,9 +38,12 @@ public class GameManager : MonoBehaviour {
 		levelManager = this.gameObject.GetComponent<LevelManager>();
 
 
-		soundManager.PlayBg1();
-
 		EnterGame();
+	}
+
+	public void CreateEffect()
+	{
+
 	}
 
 	public void reset_level_data()
@@ -219,8 +222,48 @@ public class GameManager : MonoBehaviour {
 	}
 
 
+	//创建击打特效
+	public void create_effect(Transform transform)
+	{
+		create_effect(transform,0);
+	}
+	public void create_effect(Transform transform,float delay)
+	{
+		if(delay==0)
+		{
+		float offset_z = -2.5f;
+		//		GameObject effect =	Resources.Load<GameObject>("Prefabs/effect");
+		Instantiate(ResourcesManager.instance.effect, transform.position,transform.rotation);
+		//		GameObject speed =	Resources.Load<GameObject>("Prefabs/speed");
+		Instantiate(ResourcesManager.instance.speed,transform.position,transform.rotation);
+		//		GameObject boom =	Resources.Load<GameObject>("Prefabs/boom");
+		Instantiate(ResourcesManager.instance.boom,transform.position+new Vector3(0,0,offset_z),transform.rotation);
+		}else{
+			StartCoroutine(delay_effect(transform,delay));
+		}
+	}
+	IEnumerator delay_effect(Transform transform, float delay)
+	{
+		//		
+		yield return new WaitForSeconds(delay);
+		//		Debug.Log("WaitForSeconds");
+		create_effect(transform,0);
+	}
 
 
+	public void create_level_end_scoreflash()
+	{
+		int random = Random.Range(1,4);
+		string str="" ;
+		switch(random)
+		{
+		case 1: str ="Nice!"; break;
+		case 2:str ="Good!"; break;
+		case 3: str ="Awesome!"; break;
+		case 4:str ="Cool!"; break;
+		}
+		ScoreFlash.Push(str);
+	}
 
 
 }

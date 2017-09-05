@@ -18,43 +18,40 @@ public class SoundManager : MonoBehaviour {
 		bgm.loop=true;
 		bgm.Play();
 	}
-	public void Play(string str)
-	{
-		AudioClip clip =(AudioClip)Resources.Load("Sound/"+str, typeof(AudioClip));//调用Resources方法加载AudioClip资源
-		PlayAudioClip(clip);
-	}
-	public void PlayAudioClip(AudioClip clip)
-	{
-		sound.clip = clip;
-//		source.minDistance= 1.0f;
-//		source.maxDistance= 50;
-//		source.rolloffMode= AudioRolloffMode.Linear;
-//		source.transform.position =transform.position;
-		sound.Play();
-	}
 
-	// Update is called once per frame
 	void Update () {
 
 	}
 	public void PlaySound(string str)
 	{
-		Play(str);
+		PlaySound(str,0);
 	}
-	public void PlayWin()
+	public void PlaySound(string str,float delay)
 	{
-		StartCoroutine(Play_Win());
+		if(delay==0)
+		{
+			AudioClip clip =(AudioClip)Resources.Load("Sound/"+str, typeof(AudioClip));//调用Resources方法加载AudioClip资源
+			sound.clip = clip;
+			//		source.minDistance= 1.0f;
+			//		source.maxDistance= 50;
+			//		source.rolloffMode= AudioRolloffMode.Linear;
+			//		source.transform.position =transform.position;
+			sound.Play();
+		}else{
+			StartCoroutine((PlayDelay(str,delay)));
+		}
+	
 	}
-	 IEnumerator Play_Win()
+//	public void PlayWin()
+//	{
+//		StartCoroutine(Play_Win());
+//	}
+	IEnumerator PlayDelay(string str, float delay)
 	{
 		//		
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(delay);
 //		Debug.Log("WaitForSeconds");
-		PlaySound("win");
-	}
-	public void PlayBg1()
-	{
-	
+		PlaySound("win",0);
 	}
 
 }
