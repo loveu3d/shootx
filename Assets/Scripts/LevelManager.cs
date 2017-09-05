@@ -51,6 +51,13 @@ public class LevelManager : MonoBehaviour {
 		GameObject monster = GameObject.Find("CageMonster");
 		Destroy(monster);
 
+		GameObject boss = GameObject.Find("Boss");
+		Destroy(boss);
+
+		GameObject fly = GameObject.Find("Fly");
+		Destroy(fly);
+
+
 	}
 	struct sss{
 		int a_max;
@@ -193,7 +200,7 @@ public class LevelManager : MonoBehaviour {
 	{
 		clear_sprites();
 
-//		level_id=5;
+		level_id=5;
 
 		int fly_random = Random.Range(1,4);
 		if(fly_random==2)

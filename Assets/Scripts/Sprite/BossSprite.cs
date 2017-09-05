@@ -10,11 +10,12 @@ public class BossSprite : MonoBehaviour {
 	
 	private SpriteRenderer spriterenderer;  
 
+	int boss_id;
 
 //	bool is_game_win;
 	float move_time;
 
-	int life=10;
+	int life=1;
 	public void set_life(int _life)
 	{
 		life=_life;
@@ -45,6 +46,10 @@ public class BossSprite : MonoBehaviour {
 	//	}
 	public void set_monster_id(int monster_id)
 	{
+		if(monster_id==0) boss_id=10;
+
+		boss_id = monster_id;
+
 		SpriteRenderer spriterenderer;
 		spriterenderer = this.gameObject.GetComponent<SpriteRenderer>();
 		Sprite _sprite = Resources.Load<Sprite>("monster"+monster_id);
@@ -110,20 +115,34 @@ public class BossSprite : MonoBehaviour {
 	//关卡结束，消失动画
 	public void Boss_will_die()
 	{
+
+
 		//声音
 		GameManager.instance.soundManager.PlaySound("boom");
 		GameManager.instance.soundManager.PlaySound("win",0.5f);
 
+//		float offsetY = 1.0f;
 		GameManager.instance.create_effect(gameObject.transform);
-		Transform transform =gameObject.transform;
-		transform.position += new Vector3(0.5f,0,0);
-		GameManager.instance.create_effect(gameObject.transform,0.2f);
-		transform.position += new Vector3(-0.5f,0,0);
-		GameManager.instance.create_effect(gameObject.transform,0.4f);
-		transform.position += new Vector3(0,-0.5f,0);
-		GameManager.instance.create_effect(gameObject.transform,0.6f);
-		transform.position += new Vector3(0,0.5f,0);
-		GameManager.instance.create_effect(gameObject.transform,0.8f);
+		Transform _transform =gameObject.transform;
+//		_transform.rotation=gameObject.transform.rotation;
+
+		int random_8=8;
+		for(int i=0;i<random_8;i++)
+		{
+			int ran_time = Random.Range(1,9);
+			int move_x = Random.Range(1,9);
+			int move_y = Random.Range(1,12);//y值大些（图片比较高）
+			int rand_x_dir =1;
+			int rand_y_dir =1;
+			int rand_x=Random.Range(1,3);
+			if(rand_x==1) rand_x_dir=-1;
+			int rand_y=Random.Range(1,3);
+			if(rand_y==1) rand_y_dir=-1;
+
+			GameManager.instance.create_effect(
+				_transform.position+new Vector3(((float)move_x/10f)*rand_x_dir,((float)move_y/10f)*rand_y_dir,0),_transform.rotation,(float)ran_time/10f);
+		}
+	
 
 //		Instantiate(effect,gameObject.transform.position,gameObject.transform.rotation);
 
@@ -135,14 +154,19 @@ public class BossSprite : MonoBehaviour {
 //		//		obj.transform.parent = this.transform.parent;
 //		obj.transform.SetParent(this.transform.parent);
 //		Text tm = obj.transform.Find("Text").GetComponent<Text>();
-//		int scores = 100;
+		int scores = 100*boss_id;
 //		tm.color =Color.red;
 //		tm.text = ""+scores;
-//		GameManager.gameManager.scoreManager.addScores(scores);
+		GameManager.instance.scoreManager.addScores(scores);
 
-		this.gameObject.transform.position = 	this.gameObject.transform.position +new Vector3(0,0,3);
+//		this.gameObject.transform.position = 	this.gameObject.transform.position +new Vector3(0,0,3);
 
-	}
+		//隐藏石头
+		GameObject obj4= GameObject.Find("heart_CD");
+		HeartCDTrigger hh= obj4.GetComponent<HeartCDTrigger>();
+		hh.set_HeartCD();
+
+}
 
 
 	float radian = 0; // 弧度  
@@ -152,15 +176,12 @@ public class BossSprite : MonoBehaviour {
 	// Update is called once per frame  
 	void Update ()
 	{
-			radian += perRadian; // 弧度每次加0.03  
-			float dy = Mathf.Cos(radian*(float)5) * radius; // dy定义的是针对y轴的变量，也可以使用sin，找到一个适合的值就可以  
-		this.transform.position = this.transform. position  + new Vector3 (dy, 0, 0);  
 		//		Debug.Log(""+this.gameObject.name+": random_pos:"+random_pos);
 		if(GameManager.instance.Is_game_win())
 		{
 			move_time +=Time.deltaTime;
 
-		   if(move_time>1.0)
+		   if(move_time>2.0)
 		   {
 				GameManager.instance.nextLevel();
 
@@ -174,6 +195,12 @@ public class BossSprite : MonoBehaviour {
 			Destroy( transform.gameObject);
 
 	    	}
+
+		}else{
+			radian += perRadian; // 弧度每次加0.03  
+			float dy = Mathf.Cos(radian*(float)5) * radius; // dy定义的是针对y轴的变量，也可以使用sin，找到一个适合的值就可以  
+			this.transform.position = this.transform. position  + new Vector3 (dy, 0, 0);  
+
 
 		}
 	}

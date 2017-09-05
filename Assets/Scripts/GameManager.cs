@@ -225,29 +225,29 @@ public class GameManager : MonoBehaviour {
 	//创建击打特效
 	public void create_effect(Transform transform)
 	{
-		create_effect(transform,0);
+		create_effect(transform.position,transform.rotation,0);
 	}
-	public void create_effect(Transform transform,float delay)
+	public void create_effect(Vector3 pos,UnityEngine.Quaternion rotat,float delay)
 	{
 		if(delay==0)
 		{
-		float offset_z = -2.5f;
+		float offset_z = -2.5f;//最前显示
 		//		GameObject effect =	Resources.Load<GameObject>("Prefabs/effect");
-		Instantiate(ResourcesManager.instance.effect, transform.position,transform.rotation);
+			Instantiate(ResourcesManager.instance.effect,pos,rotat);
 		//		GameObject speed =	Resources.Load<GameObject>("Prefabs/speed");
-		Instantiate(ResourcesManager.instance.speed,transform.position,transform.rotation);
+			Instantiate(ResourcesManager.instance.speed,pos,rotat);
 		//		GameObject boom =	Resources.Load<GameObject>("Prefabs/boom");
-		Instantiate(ResourcesManager.instance.boom,transform.position+new Vector3(0,0,offset_z),transform.rotation);
+			Instantiate(ResourcesManager.instance.boom,pos+new Vector3(0,0,offset_z),rotat);
 		}else{
-			StartCoroutine(delay_effect(transform,delay));
+			StartCoroutine(delay_effect(pos,rotat,delay));
 		}
 	}
-	IEnumerator delay_effect(Transform transform, float delay)
+	IEnumerator delay_effect(Vector3 pos,UnityEngine.Quaternion rotat, float delay)
 	{
 		//		
 		yield return new WaitForSeconds(delay);
 		//		Debug.Log("WaitForSeconds");
-		create_effect(transform,0);
+		create_effect(pos,rotat,0);
 	}
 
 

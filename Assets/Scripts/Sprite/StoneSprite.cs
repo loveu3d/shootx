@@ -92,6 +92,9 @@ public class StoneSprite : MonoBehaviour {
 		case 3:	
 			{ tm.color =Color.red; }
 			break;
+		case 4:	
+			{ tm.color =new Color(255,0,255); }
+			break;
 		}
 
 		tm.text = ""+scores;
