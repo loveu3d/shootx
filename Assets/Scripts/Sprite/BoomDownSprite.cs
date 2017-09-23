@@ -97,6 +97,7 @@ public class BoomDownSprite : MonoBehaviour {
 			{
 			GameManager.instance.reduceLifecount();
 			}
+			GameManager.instance.uiManager.addTime(-2f);
 
 //			int count =GameManager.instance.getLifecount();
 //			GameManager.instance.setLifecount(count-reduce_count);
@@ -135,7 +136,7 @@ public class BoomDownSprite : MonoBehaviour {
 			GameObject.Destroy(this.gameObject);
 		}
 
-		transform.Translate(new Vector3(0,-0.03f,0));
+		transform.Translate(new Vector3(0,-0.035f,0));
 
 	}
 

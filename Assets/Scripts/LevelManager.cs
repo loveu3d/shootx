@@ -279,7 +279,7 @@ public class LevelManager : MonoBehaviour {
 
 		if(is_boss_level)
 		{
-			rocket_per_distatn=0.5f;//火箭移动距离 每帧
+			rocket_per_distatn=0.4f;//火箭移动距离 每帧
 			left_right =37; //初始化左右砖数量
 			up_down =1;
 			spaceX= 0.35f;

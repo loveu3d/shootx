@@ -17,7 +17,7 @@ public class BossSprite : MonoBehaviour {
 //	bool is_game_win;
 	float move_time;
 
-	int life=1;
+	int life=10;
 	public void set_life(int _life)
 	{
 		life=_life;
@@ -177,15 +177,11 @@ public class BossSprite : MonoBehaviour {
 }
 
 	float state_ticket;
-	float state_normal_time=3.0f;
-	float state_boom_count=2;
-	float state_boom_time=3.0f;
+	float state_normal_time=1.0f;
+	float state_boom_count=1;
+	float state_boom_time=1.0f;
 	bool has_create_boom=false;
 	int state;
-
-	float radian = 0; // 弧度  
-	float perRadian = 0.01f; // 每次变化的弧度  float
-	float radius = 0.05f; // 半径  
 
 	// Update is called once per frame  
 	void FixedUpdate ()
@@ -293,6 +289,12 @@ public class BossSprite : MonoBehaviour {
 
 		}
 	}
+
+
+	float radian = 0; // 弧度  
+	float perRadian = 0.01f; // 每次变化的弧度  float
+	float radius = 0.03f; // 半径  
+
 
 	void update_movement()
 	{

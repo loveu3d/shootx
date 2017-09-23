@@ -33,17 +33,25 @@ public class FlySprite : MonoBehaviour {
 		//		obj.transform.parent = this.transform.parent;
 		obj.transform.SetParent(this.transform.parent);
 		Text tm = obj.transform.Find("Text").GetComponent<Text>();
-		int scores = 5;
+		int scores = 10;
 		tm.text = "life +"+scores;
 
 		TextRotateController tr = obj.GetComponent<TextRotateController>();
 		tr.set_type(2);
+
+		GameManager.instance.uiManager.addTime(scores);
+
 //		this.gameObject. SetActive(false);
 
 //		this.gameObject.transform.position = 	this.gameObject.transform.position +new Vector3(0,0,3);
 		wait_destory();
+
 		//比较丑的代码，位移出去，这样就被背景挡住看不见了
 		this.gameObject.transform.position = 	this.gameObject.transform.position +new Vector3(0,0,3);
+
+//		SpriteRenderer sp = this.gameObject.GetComponent<SpriteRenderer>();
+//		sp.enabled = false;
+
 	}
 
 	void wait_destory()

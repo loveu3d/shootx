@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
 	GameObject ui_progress;
 	Image ui_progress_image;
-	float max_time=30f;
+	float max_time=20f;
 	bool isPauseTime;
 	// Use this for initialization
 	void Start () {
@@ -19,13 +19,18 @@ public class UIManager : MonoBehaviour {
 
 	void FixedUpdate()
 	{
+		if(ui_progress_image.fillAmount <=0)
+		{
+			//			addTime(5);
+
+			if(GameManager.instance. Is_game_win()) return; 
+			GameManager.instance.will_game_over=true;
+		}
+
 		if(isPauseTime) return;
 		if(GameManager.instance.Is_game_win()) return;
 		ui_progress_image.fillAmount -=Time.deltaTime/max_time;
-		if(ui_progress_image.fillAmount <=0)
-		{
-//			addTime(5);
-		}
+	
 	}
 	public void pauseTime()
 	{

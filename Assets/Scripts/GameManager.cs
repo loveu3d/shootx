@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour {
 	public void reduceLifecount()
 	{
 		scoreManager.reduceLifecount();
+
 		if(scoreManager.getLifecount()<=0||
 			GameManager.instance.uiManager.getTime()<=0f
 		)
@@ -141,8 +142,8 @@ public class GameManager : MonoBehaviour {
 	
 		if(will_game_over==true)
 		{
-			will_game_ticket +=Time.deltaTime;
-			if(will_game_time<will_game_ticket)
+//			will_game_ticket +=Time.deltaTime;
+//			if(will_game_time<will_game_ticket)
 			{
 			enterGameOver();
 			}
@@ -203,6 +204,8 @@ public class GameManager : MonoBehaviour {
 		levelManager.set_level_id(1);
 
 		GameManager.instance.scoreManager.resetScores();
+
+		uiManager.resetTime();
 
 		setLifecount(1);
 
