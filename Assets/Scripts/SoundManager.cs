@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour {
 	}
 	public void PlayBGM(string str)
 	{
-		AudioClip clip =(AudioClip)Resources.Load("Sound/"+"bgm", typeof(AudioClip));//调用Resources方法加载AudioClip资源
+		AudioClip clip =(AudioClip)Resources.Load("Sound/"+str, typeof(AudioClip));//调用Resources方法加载AudioClip资源
 //		bgm
 		bgm.clip = clip;
 		bgm.loop=true;

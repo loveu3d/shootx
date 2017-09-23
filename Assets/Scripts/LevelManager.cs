@@ -10,8 +10,8 @@ public class LevelManager : MonoBehaviour {
 
 //	GameObject stone_point;
 	int level_id;
-	//这关过关将增加的命
-	int level_to_add_life;
+	//这关过关将增加的时间
+	float level_to_add_time;
 
 	void Start () {
 		set_level_id(1);
@@ -57,7 +57,10 @@ public class LevelManager : MonoBehaviour {
 		GameObject fly = GameObject.Find("Fly");
 		Destroy(fly);
 
-
+		GameObject boom = GameObject.Find("boomDownSprite");
+		Destroy(boom);
+		//MTODO 循环消除多个地雷
+//		GameObject.FindGameObjectsWithTag
 	}
 	struct sss{
 		int a_max;
@@ -153,14 +156,20 @@ public class LevelManager : MonoBehaviour {
 		RocketSprite _rocket = obj.GetComponent<RocketSprite>();
 		_rocket.set_rocket_distant(dis);
 	}
-	public int get_level_to_add_life()
+	public void set_rocket_scale(float dis)
 	{
-		return level_to_add_life;
+		GameObject obj = GameObject.Find("rocket");
+		obj.transform.localScale =		new Vector3( dis,dis,dis);
 	}
 
-	public void level_To_add_life(int _level_add_life)
+	public float get_level_to_add_time()
 	{
-		level_to_add_life = _level_add_life;
+		return level_to_add_time;
+	}
+
+	public void level_To_add_time(float _level_add_time)
+	{
+		level_to_add_time = _level_add_time;
 	}
 	public void create_boss_level()
 	{
@@ -173,7 +182,9 @@ public class LevelManager : MonoBehaviour {
 		monster = Instantiate(monster,monster.transform.position,monster.transform.rotation);
 		monster.name = "Boss";
 //		monster.transform.localScale = new Vector3(scale_value,scale_value,1);
-		monster.transform.position= new Vector3(camera.transform.position.x,camera.transform.position.y,obj3.transform.position.z);
+		monster.transform.position= new Vector3(camera.transform.position.x,
+			camera.transform.position.y+1,
+			obj3.transform.position.z);
 		BossSprite ms = monster.transform.GetComponent<BossSprite>();
 		ms.set_monster_id(boss_id);
 	}
@@ -195,62 +206,88 @@ public class LevelManager : MonoBehaviour {
 //		BossSprite ms = monster.transform.GetComponent<BossSprite>();
 //		ms.set_monster_id(boss_id);
 	}
-	int temp__=5;
+
+
+
+	public void EnterBossLevel()
+	{
+		GameManager.instance.EnterBossLevel();
+		set_rocket_scale(0.6f);
+	}
+
+	//boss的下一关进入这个函数
+	public void EnterNormalLevel()
+	{
+		GameManager.instance.EnterNormalLevel();
+		set_rocket_scale(1);
+	}
+
+	public bool is_boss_level;
+
+	int temp__=6;
+
 	public void resetLevel()
 	{
-		clear_sprites();
+		//test boss level
+//		level_id-=1;
+//		level_id +=temp__;
+//
+		level_id=6;
 
-//		if(level_id==1)level_id=0;
-		level_id-=1;
-		level_id +=temp__;
-
-		Debug.Log("level_id:"+level_id);
-		//-------fly
-		int fly_random = Random.Range(1,4);
-		if(fly_random==2)
-		{
-		create_fly_life();
-		}
-		//-------fly end
-
-		bool is_boss_level=false;
-
-		int level_per_boss =5;
+		int level_per_boss =6;
 
 		if(level_id%level_per_boss==0)//每隔level_per_boss关一个boss
 		{
 			is_boss_level=true;
+		}else{
+			is_boss_level=false;
 		}
 
-		if(		is_boss_level)
+		if(is_boss_level)
+		{
+			EnterBossLevel();
+		}
+		if((level_id-1)%level_per_boss==0)//boss的下一关进入这个函数
+		{
+			EnterNormalLevel();
+		}
+
+		//清除 
+		clear_sprites();
+
+		//-------fly
+		int fly_random = Random.Range(1,4);
+		if(is_boss_level==false&&fly_random==2)
+		{
+			create_fly_life();
+		}
+		//-------fly end
+
+		if(	is_boss_level)
 		{
 			create_boss_level();
 		}
-
-
 		float rocket_per_distatn=0.4f;//火箭移动距离 每帧
 		int left_right=0;
 		int up_down=0;
 		float spaceX=0;
 		float spaceY=0;
 		float scale_value=0;
-		int level_add_life=0;
+		int level_add_time=0;
 		int stone_level=1;
 		bool isRandom=false;
-
 
 		if(is_boss_level)
 		{
 			rocket_per_distatn=0.5f;//火箭移动距离 每帧
-			left_right =21; //初始化左右砖数量
+			left_right =37; //初始化左右砖数量
 			up_down =1;
-			spaceX= 0.8f;
-			spaceY= 0.7f;
-			scale_value =1.5f;
+			spaceX= 0.35f;
+			spaceY= 0.5f;
+			scale_value =0.75f;
 			stone_level=4;
-			level_add_life=20;
-		}
-		else{
+			level_add_time=10;
+		}else{
 		//创建普通关卡
 		if(level_id>7) isRandom=true;
 		switch(level_id)
@@ -263,7 +300,7 @@ public class LevelManager : MonoBehaviour {
 				spaceX= 1.5f;
 				spaceY= 1.5f;
 				scale_value =3f;
-				level_add_life=4;
+				level_add_time=5;
 		}
 		break;
 		case 2:
@@ -274,7 +311,7 @@ public class LevelManager : MonoBehaviour {
 				spaceX= 1.2f;
 				spaceY= 1.2f;
 				scale_value =2.5f;
-				level_add_life=8;
+				level_add_time=8;
 		}
 			break;
 		case 3:
@@ -285,7 +322,7 @@ public class LevelManager : MonoBehaviour {
 				spaceX= 1f;
 				spaceY= 1f;
 				scale_value =2f;
-				level_add_life=10;
+				level_add_time=10;
 			}
 			break;
 		case 4:
@@ -296,7 +333,7 @@ public class LevelManager : MonoBehaviour {
 				spaceX= 0.9f;
 				spaceY= 0.8f;
 				scale_value =1.75f;
-				level_add_life=15;
+				level_add_time=15;
 			}
 			break;
 		case 5:
@@ -307,10 +344,11 @@ public class LevelManager : MonoBehaviour {
 				spaceX= 0.8f;
 				spaceY= 0.7f;
 				scale_value =1.5f;
-				level_add_life=20;
+				level_add_time=10;
 			}
 			break;
-		case 6:
+				//6为boss
+		case 7:
 			{
 				rocket_per_distatn=0.5f;//火箭移动距离 每帧
 				left_right =17; //初始化左右砖数量
@@ -319,10 +357,10 @@ public class LevelManager : MonoBehaviour {
 				spaceY= 0.7f;
 				scale_value =1.5f;
 				stone_level=2;
-				level_add_life=25;
+				level_add_time=20;
 			}
 			break;
-		case 7:
+		case 8:
 			{
 				rocket_per_distatn=0.5f;//火箭移动距离 每帧
 				left_right =17; //初始化左右砖数量
@@ -331,7 +369,7 @@ public class LevelManager : MonoBehaviour {
 				spaceY= 0.7f;
 				scale_value =1.5f;
 				stone_level=3;
-				level_add_life=30;
+				level_add_time=30;
 
 			}
 			break;
@@ -345,7 +383,7 @@ public class LevelManager : MonoBehaviour {
 				spaceY= 0.7f;
 				scale_value =1.5f;
 				stone_level=3;
-				level_add_life=25;
+				level_add_time=25;
 			}
 			break;
 		}
@@ -361,7 +399,7 @@ public class LevelManager : MonoBehaviour {
 		//当前关卡移动距离
 		set_rocket_distant(rocket_per_distatn);
 		//完成当前关卡增加的命数
-		level_To_add_life(level_add_life);
+		level_To_add_time(level_add_time);
 			
 	}
 

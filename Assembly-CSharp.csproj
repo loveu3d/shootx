@@ -146,7 +146,8 @@
      <Compile Include="Assets\ScoreFlash - New Unity UI\AchievementsExample\AchievementsCustomRendererUnityUI.cs" />
      <Compile Include="Assets\ScoreFlash - New Unity UI\Example-MessagesIn3DSpace\ScoreFlashRendererUnityUI3D.cs" />
      <Compile Include="Assets\ScoreFlash - New Unity UI\ScoreFlashRendererUnityUI.cs" />
-     <Compile Include="Assets\Scripts\BoomController.cs" />
+     <Compile Include="Assets\Scripts\BoomEffectController.cs" />
+     <Compile Include="Assets\Scripts\CameraScale.cs" />
      <Compile Include="Assets\Scripts\EffectAni.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\HeartCDTrigger.cs" />
@@ -156,6 +157,7 @@
      <Compile Include="Assets\Scripts\ShowFPS.cs" />
      <Compile Include="Assets\Scripts\SoundManager.cs" />
      <Compile Include="Assets\Scripts\SpeedAni.cs" />
+     <Compile Include="Assets\Scripts\Sprite\BoomDownSprite.cs" />
      <Compile Include="Assets\Scripts\Sprite\BossSprite.cs" />
      <Compile Include="Assets\Scripts\Sprite\CageSprite.cs" />
      <Compile Include="Assets\Scripts\Sprite\FlySprite.cs" />

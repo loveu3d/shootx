@@ -15,28 +15,13 @@ public class MonsterSprite : MonoBehaviour {
 		set_monster_animation(1);
 	}
 
-//	public  bool Is_game_win()
-//	{
-//		return is_game_win;
-//	}
-
-//	public void reset_position()
-//	{
-////		transform.parent.transform.position
-//		this.transform.parent.transform.position = old_transform;
-//	}
-//	public void set_monster_id(int monster_id)
-//	{
-//		 SpriteRenderer spriterenderer;
-//	     spriterenderer = this.gameObject.GetComponent<SpriteRenderer>();
-//		Sprite _sprite = Resources.Load<Sprite>("monster"+monster_id);
-//		spriterenderer.sprite = _sprite;
-//	}
 	public void set_monster_animation(int anim_id)
 	{
 		SpriteRenderer spriterenderer;
 		spriterenderer = this.gameObject.GetComponent<SpriteRenderer>();
-		Sprite _sprite = Resources.Load<Sprite>("actor"+anim_id);
+//		Sprite _sprite = Resources.Load<Sprite>("actor"+anim_id);
+		Sprite _sprite = Resources.Load<Sprite>("actor0");
+
 		spriterenderer.sprite = _sprite;
 	}
 
@@ -73,21 +58,25 @@ public class MonsterSprite : MonoBehaviour {
 			}
 			if(move_time>2.0)
 			{
-				GameManager.instance.nextLevel();
-
-				GameObject obj = GameObject.Find("rocket");
-				RocketSprite _rocket = obj.GetComponent<RocketSprite>();
-				_rocket.reset_position();
-
-				GameManager.instance.set_gamewin(false);
-				move_time=0;
-//				reset_position();
-				Destroy( transform.parent.gameObject);
-
+				next_level();
 			}
 
 		}
 
+	}
+
+	void next_level()
+	{
+		GameManager.instance.nextLevel();
+
+		GameObject obj = GameObject.Find("rocket");
+		RocketSprite _rocket = obj.GetComponent<RocketSprite>();
+		_rocket.reset_position();
+
+		GameManager.instance.set_gamewin(false);
+		move_time=0;
+		//				reset_position();
+		Destroy( transform.parent.gameObject);
 	}
 
 

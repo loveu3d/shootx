@@ -61,20 +61,37 @@ public class GameManager : MonoBehaviour {
 	{
 		reset_level_data();
 
-//		CageMonster
-//		reset_position
-		GameManager.instance.setLifetime(	GameManager.instance.getLifetime()
-			+levelManager. get_level_to_add_life());
+//		GameManager.instance.setLifecount(	GameManager.instance.getLifecount()
+//			+levelManager. get_level_to_add_life());
+
+		GameManager.instance.uiManager.addTime(levelManager. get_level_to_add_time());
+		
 		levelManager.nextLevel();
 	}
-	public int getLifetime()
+	public int getLifecount()
 	{
-		return scoreManager.getLifetime();
+		return scoreManager.getLifecount();
 	}
 
-	public void setLifetime(int lifetime)
+	public void reduceLifecount()
 	{
-		scoreManager.setLifetime(lifetime);
+		scoreManager.reduceLifecount();
+		if(scoreManager.getLifecount()<=0||
+			GameManager.instance.uiManager.getTime()<=0f
+		)
+		{
+			//			GameObject obj = GameObject.Find("Monster");
+			//			MonsterSprite sprite = obj.GetComponent<MonsterSprite>();
+			if(Is_game_win()) return; 
+			will_game_over=true;
+		}
+	}
+
+
+	public void setLifecount(int lifetime)
+	{
+		scoreManager.setLifecount(lifetime);
+
 	}
 
 	public bool Is_game_win()
@@ -85,18 +102,6 @@ public class GameManager : MonoBehaviour {
 	{
 		is_game_win = sss;
 	}
-	public void reduceLifetime()
-	{
-		scoreManager.reduceLifetime();
-		if(scoreManager.getLifetime()<=0)
-		{
-//			GameObject obj = GameObject.Find("Monster");
-//			MonsterSprite sprite = obj.GetComponent<MonsterSprite>();
-			if(Is_game_win()) return; 
-			will_game_over=true;
-		}
-	}
-
 
 	public void setGameOverVisible(bool enabled)
 	{
@@ -160,6 +165,15 @@ public class GameManager : MonoBehaviour {
 		RetryGame();
 	}
 
+	public void EnterBossLevel()
+	{
+		soundManager.PlayBGM("fight");
+	}
+	public void EnterNormalLevel()
+	{
+		soundManager.PlayBGM("bgm");
+	}
+
 	public void EnterNextGame()
 	{
 		change_game_id();
@@ -168,6 +182,7 @@ public class GameManager : MonoBehaviour {
 	void change_button_pic()
 	{
 		GameObject obj = GameObject.Find("ui_changegame");
+		if(obj==null) return;
 		Image image = obj.GetComponent<Image>();
 		string path;
 		if(game_id==1)
@@ -189,7 +204,7 @@ public class GameManager : MonoBehaviour {
 
 		GameManager.instance.scoreManager.resetScores();
 
-		setLifetime(20);
+		setLifecount(1);
 
 		setGameOverVisible(false);
 
@@ -225,19 +240,30 @@ public class GameManager : MonoBehaviour {
 	//创建击打特效
 	public void create_effect(Transform transform)
 	{
+
 		create_effect(transform.position,transform.rotation,0);
 	}
 	public void create_effect(Vector3 pos,UnityEngine.Quaternion rotat,float delay)
 	{
 		if(delay==0)
 		{
-		float offset_z = -2.5f;//最前显示
+			float normal=1;
+			if(instance.levelManager.is_boss_level)
+			{
+				normal =0.3f;
+			}
+			ResourcesManager.instance.effect.transform.localScale =new Vector3( normal,normal,normal);
+			ResourcesManager.instance.speed.transform.localScale =new Vector3( normal,normal,normal);
+			ResourcesManager.instance.boomEffect.transform.localScale =new Vector3( normal,normal,normal);
+
+			float offset_z = -2.5f;//最前显示
 		//		GameObject effect =	Resources.Load<GameObject>("Prefabs/effect");
+
 			Instantiate(ResourcesManager.instance.effect,pos,rotat);
 		//		GameObject speed =	Resources.Load<GameObject>("Prefabs/speed");
-			Instantiate(ResourcesManager.instance.speed,pos,rotat);
+//			Instantiate(ResourcesManager.instance.speed,pos,rotat);
 		//		GameObject boom =	Resources.Load<GameObject>("Prefabs/boom");
-			Instantiate(ResourcesManager.instance.boom,pos+new Vector3(0,0,offset_z),rotat);
+			Instantiate(ResourcesManager.instance.boomEffect,pos+new Vector3(0,0,offset_z),rotat);
 		}else{
 			StartCoroutine(delay_effect(pos,rotat,delay));
 		}

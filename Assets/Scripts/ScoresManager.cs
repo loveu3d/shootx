@@ -29,8 +29,9 @@ public class ScoresManager : MonoBehaviour {
 		
 	}
 
-	public void reduceLifetime()
+	public void reduceLifecount()
 	{
+		return ;
 		GameObject ui_lifetimes = GameObject.Find("ui_lifetimes");
 		Text text =	ui_lifetimes.GetComponent<Text>();
 		int number = int.Parse(text.text);//	Convert.ToString(text.text);
@@ -40,17 +41,21 @@ public class ScoresManager : MonoBehaviour {
 		text.text=""+number;
 	}
 
-	public void setLifetime(int setLifetime)
+	public void setLifecount(int setLifecount)
 	{
+		return ;
+
 		GameObject ui_lifetimes = GameObject.Find("ui_lifetimes");
 		Text text =	ui_lifetimes.GetComponent<Text>();
 	//	int number = int.Parse(text.text);//	Convert.ToString(text.text);
-		text.text=""+setLifetime;
+		text.text=""+setLifecount;
 
 	}
 
-	public int getLifetime()
+	public int getLifecount()
 	{
+		return 1;
+
 		GameObject ui_lifetimes = GameObject.Find("ui_lifetimes");
 		Text text =	ui_lifetimes.GetComponent<Text>();
 		int number = int.Parse(text.text);//	Convert.ToString(text.text);

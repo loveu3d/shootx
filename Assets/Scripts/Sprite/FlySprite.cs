@@ -26,7 +26,7 @@ public class FlySprite : MonoBehaviour {
 		is_active=false;
 		GameManager.instance.create_effect(gameObject.transform);
 
-		GameManager.instance.setLifetime(GameManager.instance.getLifetime()+5);
+		GameManager.instance.setLifecount(GameManager.instance.getLifecount()+5);
 
 		GameObject obj =	Resources.Load<GameObject>("Prefabs/SFTextYellow");
 		obj = Instantiate(obj,this.transform.parent.position,gameObject.transform.parent.rotation);

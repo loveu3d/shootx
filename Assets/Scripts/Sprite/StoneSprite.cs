@@ -72,9 +72,12 @@ public class StoneSprite : MonoBehaviour {
 
 		//创建字体
 //		GameObject obj = Resources.Load("Prefabs/text_3d")
+		float normal =1;
 
 		GameObject obj =	Resources.Load<GameObject>("Prefabs/SFTextYellow");
 		obj = Instantiate(obj,this.transform.position,gameObject.transform.rotation);
+		if(GameManager.instance.levelManager.is_boss_level) normal=0.5f;
+		obj.transform.localScale =new Vector3(normal,normal,normal);
 //		obj.transform.parent = this.transform.parent;
 		obj.transform.SetParent(this.transform.parent);
 		Text tm = obj.transform.Find("Text").GetComponent<Text>();

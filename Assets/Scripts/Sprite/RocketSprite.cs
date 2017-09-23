@@ -26,7 +26,6 @@ public class RocketSprite : MonoBehaviour {
 	public void reset_position()
 	{
 		this.transform.localPosition =	GameObject.Find("StartPoint").transform.localPosition;	
-
 	}
 
 	// Use this for initialization
@@ -67,6 +66,7 @@ public class RocketSprite : MonoBehaviour {
 
 
 	}
+
 	public void runbullet()
 	{
 
@@ -106,7 +106,9 @@ public class RocketSprite : MonoBehaviour {
 //				Debug.Log("GameManager.gameManager:"+GameManager.gameManager);
 //				Debug.Log("gameManager.scoreManager:"+GameManager.gameManager.scoreManager);
 
-				if((GameManager.instance.scoreManager.getLifetime())>0)
+				if((GameManager.instance.scoreManager.getLifecount())>0||
+					GameManager.instance.uiManager.getTime()>0
+				)
 				{
 					if(Input.GetKey(KeyCode.Space)||Input.GetMouseButton(0))	
 					{
@@ -120,7 +122,8 @@ public class RocketSprite : MonoBehaviour {
 //						GameObject obj = GameObject.Find("firePoint");
 //
 //						Instantiate(m_bullet,obj.transform.position,obj.transform.rotation);
-					//	Debug.Log("碰撞对象: " + hit.collider.name);  
+					
+						Debug.Log("碰撞对象: " + hit.collider.name);  
 						if(hit.collider.name =="Cage")
 						{
 							GameObject cage =  hit.collider.gameObject;
@@ -131,14 +134,19 @@ public class RocketSprite : MonoBehaviour {
 							}else if (hit.collider.name =="Boss"){
 								GameObject hf =  hit.collider.gameObject;
 								hf.GetComponent<BossSprite>().CD_boss();
-							}else {
+							}else if (hit.collider.name =="boomDownSprite"){
+								GameObject hf =  hit.collider.gameObject;
+								hf.GetComponent<BoomDownSprite>().destory_boom();
+							}
+							else
+							{
 								Debug.Log(hit.collider.name);
 								GameObject stone =  hit.collider.gameObject;
 								stone.GetComponent<StoneSprite>().	CD_stone();
 							}
 
 
-							GameManager.instance.reduceLifetime();
+							GameManager.instance.reduceLifecount();
 						}
 
 					}
