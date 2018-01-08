@@ -232,7 +232,7 @@ public class LevelManager : MonoBehaviour {
 //		level_id-=1;
 //		level_id +=temp__;
 //
-		level_id=6;
+//		level_id=6;
 
 		int level_per_boss =6;
 
