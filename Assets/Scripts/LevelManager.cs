@@ -398,7 +398,10 @@ public class LevelManager : MonoBehaviour {
 		}
 		//当前关卡移动距离
 		set_rocket_distant(rocket_per_distatn);
-		//完成当前关卡增加的命数
+
+
+//		level_add_time=100;
+		//完成当前关卡增加的时间
 		level_To_add_time(level_add_time);
 			
 	}

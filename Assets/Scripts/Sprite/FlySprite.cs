@@ -22,7 +22,6 @@ public class FlySprite : MonoBehaviour {
 
 	public void CD_heart()
 	{
-
 		is_active=false;
 		GameManager.instance.create_effect(gameObject.transform);
 
@@ -51,7 +50,6 @@ public class FlySprite : MonoBehaviour {
 
 //		SpriteRenderer sp = this.gameObject.GetComponent<SpriteRenderer>();
 //		sp.enabled = false;
-
 	}
 
 	void wait_destory()
@@ -68,14 +66,12 @@ public class FlySprite : MonoBehaviour {
 
 	//定义 WaitAndPrint（）方法  
 	IEnumerator WaitAndDestory(float waitTime)  
-	{  
-
-
+	{
 		yield return new WaitForSeconds(waitTime);  
 //		Debug.Log("DEEsssstry");
 		//等待之后执行的动作  Ï
 		GameObject.Destroy(this.transform.parent.gameObject);
-	}    
+	}
 
 	// Update is called once per frame  
 	float radian = 0; // 弧度  

@@ -18,5 +18,6 @@ public class BoomEffectController : MonoBehaviour {
 			GameObject.Destroy(this.gameObject);
 		}
 	}
+
 }
 

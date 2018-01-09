@@ -9,6 +9,7 @@ public class ScoresManager : MonoBehaviour {
 	void Start () {
 		
 	}
+
 	public void resetScores()
 	{
 		GameObject ui_level_id = GameObject.Find("ui_score");
